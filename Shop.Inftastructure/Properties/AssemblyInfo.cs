@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Product.Domain")]
+[assembly: AssemblyTitle("Shop.Inftastructure")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Product.Domain")]
+[assembly: AssemblyProduct("Shop.Inftastructure")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("12233718-2769-4603-98f3-d7251c35a2ac")]
+[assembly: Guid("5a975454-09ea-4e9a-8903-7a540825d7fd")]
 
 // Version information for an assembly consists of the following four values:
 //

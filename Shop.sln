@@ -11,11 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shop", "Shop", "{A98B3E14-BF48-45EB-97F5-0D1E9DB5814B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Application", "Product.Application\Shop.Application.csproj", "{6139443D-429F-42DB-B432-EFF809B9BC78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Application", "Shop.Application\Shop.Application.csproj", "{6139443D-429F-42DB-B432-EFF809B9BC78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Domain", "Product.Domain\Shop.Domain.csproj", "{84438027-B344-48DD-BDC6-06809B49F69F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Domain", "Shop.Domain\Shop.Domain.csproj", "{84438027-B344-48DD-BDC6-06809B49F69F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Inftastructure", "Product.Inftastructure\Shop.Inftastructure.csproj", "{D4629877-066F-4685-8831-7C903D5A7B23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Inftastructure", "Shop.Inftastructure\Shop.Inftastructure.csproj", "{D4629877-066F-4685-8831-7C903D5A7B23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E5C3812F-9806-44FD-BE35-7BCFB4434E3E}"
 EndProject

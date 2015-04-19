@@ -45,11 +45,11 @@
     <Compile Include="UserObjectMother.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Product.Application\Shop.Application.csproj">
+    <ProjectReference Include="..\Shop.Application\Shop.Application.csproj">
       <Project>{6139443d-429f-42db-b432-eff809b9bc78}</Project>
       <Name>Shop.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Product.Domain\Shop.Domain.csproj">
+    <ProjectReference Include="..\Shop.Domain\Shop.Domain.csproj">
       <Project>{84438027-b344-48dd-bdc6-06809b49f69f}</Project>
       <Name>Shop.Domain</Name>
     </ProjectReference>
