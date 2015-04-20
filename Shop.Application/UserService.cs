@@ -2,7 +2,7 @@
 using Shop.Domain.Model.Order;
 using Shop.Domain.Model.User;
 using Shop.Domain.Model.User.Repositories;
-using Shop.Inftastructure.Repositories;
+using Shop.Infrastructure.Repositories;
 
 namespace Shop.Application
 {

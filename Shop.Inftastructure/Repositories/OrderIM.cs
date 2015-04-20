@@ -6,7 +6,7 @@ using Shop.Domain.Model.Order;
 using Shop.Domain.Model.Order.Repositories;
 using Shop.Domain.Model.User;
 
-namespace Shop.Inftastructure.Repositories
+namespace Shop.Infrastructure.Repositories
 {
     public class OrderIM : IOrderRepository
     {

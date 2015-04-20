@@ -3,7 +3,7 @@ using Shop.Domain.Model.Album;
 using Shop.Domain.Model.Album.Repositories;
 using Shop.Domain.Model.Artist;
 using Shop.Domain.Model.Artist.Repositories;
-using Shop.Inftastructure.Repositories;
+using Shop.Infrastructure.Repositories;
 
 namespace Shop.Application
 {

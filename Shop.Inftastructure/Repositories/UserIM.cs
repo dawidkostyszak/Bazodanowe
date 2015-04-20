@@ -3,7 +3,7 @@ using System.Linq;
 using Shop.Domain.Model.User;
 using Shop.Domain.Model.User.Repositories;
 
-namespace Shop.Inftastructure.Repositories
+namespace Shop.Infrastructure.Repositories
 {
     public class UserIM : IUserRepository
     {

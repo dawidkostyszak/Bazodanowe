@@ -3,7 +3,7 @@ using System.Linq;
 using Shop.Domain.Model.Order;
 using Shop.Domain.Model.Order.Repositories;
 
-namespace Shop.Inftastructure.Repositories
+namespace Shop.Infrastructure.Repositories
 {
     public class InvoiceIM : IInvoiceRepository
     {

@@ -5,7 +5,7 @@ using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using Shop.Domain.Model.Album;
 
-namespace Shop.Inftastructure
+namespace Shop.Infrastructure
 {
     public class NHibernateHelper
     {

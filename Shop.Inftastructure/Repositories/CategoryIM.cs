@@ -3,7 +3,7 @@ using System.Linq;
 using Shop.Domain.Model.Album;
 using Shop.Domain.Model.Album.Repositories;
 
-namespace Shop.Inftastructure.Repositories
+namespace Shop.Infrastructure.Repositories
 {
     public class CategoryIM : ICategoryRepository
     {

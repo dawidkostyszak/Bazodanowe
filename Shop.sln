@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Application", "Shop.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Domain", "Shop.Domain\Shop.Domain.csproj", "{84438027-B344-48DD-BDC6-06809B49F69F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Inftastructure", "Shop.Inftastructure\Shop.Inftastructure.csproj", "{D4629877-066F-4685-8831-7C903D5A7B23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Infrastructure", "Shop.Inftastructure\Shop.Infrastructure.csproj", "{D4629877-066F-4685-8831-7C903D5A7B23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E5C3812F-9806-44FD-BE35-7BCFB4434E3E}"
 EndProject

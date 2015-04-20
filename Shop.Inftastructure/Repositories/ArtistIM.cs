@@ -3,7 +3,7 @@ using System.Linq;
 using Shop.Domain.Model.Artist;
 using Shop.Domain.Model.Artist.Repositories;
 
-namespace Shop.Inftastructure.Repositories
+namespace Shop.Infrastructure.Repositories
 {
     public class ArtistIM : IArtistRepository
     {

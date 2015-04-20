@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 using Shop.Domain.Model.Artist;
 
-namespace Shop.Inftastructure.Mappings
+namespace Shop.Infrastructure.Mappings
 {
     public class ArtistMap : ClassMap<Artist>
     {

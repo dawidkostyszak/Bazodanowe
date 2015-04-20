@@ -5,7 +5,7 @@ using Shop.Domain.Model.Album;
 using Shop.Domain.Model.Album.Repositories;
 using Shop.Domain.Model.Artist;
 
-namespace Shop.Inftastructure.Repositories
+namespace Shop.Infrastructure.Repositories
 {
     public class AlbumIM : IAlbumRepository
     {
