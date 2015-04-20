@@ -3,7 +3,7 @@ using Shop.Domain.Model.Album;
 using Shop.Domain.Model.Album.Repositories;
 using Shop.Domain.Model.Artist;
 using Shop.Domain.Model.Artist.Repositories;
-using Shop.Infrastructure.Repositories;
+using Shop.Infrastructure.Repositories.NHibernateRepo;
 
 namespace Shop.Application
 {
@@ -16,9 +16,10 @@ namespace Shop.Application
         //Product Service
         public ProductService()
         {
-            _albumRepository = new AlbumIM();
             _artistRepository = new ArtistIM();
             _categoryRepository = new CategoryIM();
+            _albumRepository = new AlbumIM();
+            
         }
         public ProductService(IAlbumRepository albumRepository, IArtistRepository artistRepository, ICategoryRepository categoryRepository)
         {

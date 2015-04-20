@@ -7,7 +7,7 @@ namespace Shop.Domain.Model.Album
     {
         public virtual int Id { get; set; }
         public virtual Artist.Artist Artist { get; set; }
-        public virtual List<Category> Categories { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
         public virtual string Content { get; set; }
         public virtual string Name { get; set; }
         public virtual int Price { get; set; }
@@ -16,7 +16,7 @@ namespace Shop.Domain.Model.Album
 
         public Album()
         {
-            Categories = new List<Category>();
+            Categories = new HashSet<Category>();
         }
     }
 }

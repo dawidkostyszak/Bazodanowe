@@ -61,14 +61,30 @@
       <Project>{84438027-b344-48dd-bdc6-06809b49f69f}</Project>
       <Name>Shop.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shop.Infrastructure\Shop.Infrastructure.csproj">
+      <Project>{d4629877-066f-4685-8831-7c903d5a7b23}</Project>
+      <Name>Shop.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shop.ObjectMothers\Shop.ObjectMothers.csproj">
       <Project>{efd5218c-344b-4b60-946e-c630f242ca7f}</Project>
       <Name>Shop.ObjectMothers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
