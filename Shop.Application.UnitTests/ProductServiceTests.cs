@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using NHibernate.Linq;
 using Shop.Domain.Model.Album;
 using Shop.Domain.Model.Album.Repositories;
 using Shop.Domain.Model.Artist;
 using Shop.Domain.Model.Artist.Repositories;
-using Shop.Infrastructure;
 using Shop.ObjectMothers;
 
 namespace Shop.Application.UnitTests

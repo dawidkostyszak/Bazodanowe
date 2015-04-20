@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Shop.Domain.Model.Order;
 using Shop.Domain.Model.User;
 
 namespace Shop.Application

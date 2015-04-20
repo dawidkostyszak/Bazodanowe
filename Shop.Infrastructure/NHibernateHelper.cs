@@ -1,12 +1,8 @@
 ﻿using System.Reflection;
-using System.Web;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
-using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
-using Shop.Domain.Model.Album;
 
 namespace Shop.Infrastructure
 {
@@ -27,13 +23,6 @@ namespace Shop.Infrastructure
 
         private static void InitializeSessionFactory()
         {
-//            var configuration = new Configuration();
-//            var configurationPath = HttpContext.Current.Server.MapPath(@"~\Shop.Infrastructure\hibernate.cfg.xml");
-//            configuration.Configure(configurationPath);
-//            var configurationFile = HttpContext.Current.Server.MapPath(@"~\Shop.Domain\Model\Album\Album.hbm.xml");
-//            configuration.AddFile(configurationFile);
-//            _sessionFactory = configuration.BuildSessionFactory();
-
             _sessionFactory = Fluently.Configure()
                 .Database(
                     MsSqlConfiguration.MsSql2008.ConnectionString(
