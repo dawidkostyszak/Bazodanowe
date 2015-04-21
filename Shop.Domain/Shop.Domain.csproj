@@ -33,6 +33,9 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,12 +51,12 @@
     <Compile Include="Model\Artist\Artist.cs" />
     <Compile Include="Model\Artist\Repositories\IArtistRepository.cs" />
     <Compile Include="Model\Album\Category.cs" />
-    <Compile Include="Model\Order\Invoice.cs" />
     <Compile Include="Model\Order\Order.cs" />
+    <Compile Include="Model\Order\OrderStatus.cs" />
     <Compile Include="Model\User\Address.cs" />
     <Compile Include="Model\User\Name.cs" />
+    <Compile Include="Model\User\UserRole.cs" />
     <Compile Include="Model\User\Validations.cs" />
-    <Compile Include="Model\Order\Repositories\IInvoiceRepository.cs" />
     <Compile Include="Model\Order\Repositories\IOrderRepository.cs" />
     <Compile Include="Model\User\User.cs" />
     <Compile Include="Model\User\Repositories\IUserRepository.cs" />

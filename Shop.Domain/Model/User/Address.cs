@@ -2,10 +2,10 @@
 {
     public class Address
     {
-        public string City { get; set; }
-        public string Street { get; set; }
-        public string House { get; set; }
-        public string Flat { get; set; }
-        public string ZipCode { get; set; }
+        public virtual string City { get; set; }
+        public virtual string Street { get; set; }
+        public virtual string House { get; set; }
+        public virtual string Flat { get; set; }
+        public virtual string ZipCode { get; set; }
     }
 }

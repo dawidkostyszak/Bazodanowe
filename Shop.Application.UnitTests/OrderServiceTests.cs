@@ -68,15 +68,5 @@ namespace Shop.Application.UnitTests
             List<Order> orders = os.GetAllOrdersByUser(order.Customer.Id);
             Assert.AreEqual(1, orders.Count);
         }
-
-        [TestMethod]
-        public void CheckCreateInvoiceMethodResult()
-        {
-            Invoice invoice = OrderObjectMother.CreateInvoice();
-            os.CreateNewInvoice(invoice);
-
-            Invoice result = os.GetInvoice(invoice.Id);
-            Assert.AreEqual(invoice.Id, result.Id);
-        }
     }
 }

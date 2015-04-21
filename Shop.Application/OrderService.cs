@@ -8,18 +8,15 @@ namespace Shop.Application
 	public class OrderService : IOrderService
 	{
 		private IOrderRepository _orderRepository;
-        private IInvoiceRepository _invoiceRepository;
 
 		//Order Service
 		public OrderService()
 		{
 			_orderRepository = new OrderIM();
-            _invoiceRepository = new InvoiceIM();
 		}
-		public OrderService(IOrderRepository orderRepository, IInvoiceRepository invoiceRepository)
+		public OrderService(IOrderRepository orderRepository)
 		{
 			this._orderRepository = orderRepository;
-		    this._invoiceRepository = invoiceRepository;
 		}
 
 		public void CreateNewOrder(Order order) {
@@ -42,15 +39,5 @@ namespace Shop.Application
 		{
 		    return _orderRepository.FindByUser(customerId);
 		}
-
-        //Invoice
-        public void CreateNewInvoice(Invoice invoice)
-        {
-            _invoiceRepository.Insert(invoice);
-        }
-        public Invoice GetInvoice(int invoiceId)
-        {
-            return _invoiceRepository.Find(invoiceId);
-        }
 	}
 }

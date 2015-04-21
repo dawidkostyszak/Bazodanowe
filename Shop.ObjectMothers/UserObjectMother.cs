@@ -5,17 +5,17 @@ namespace Shop.ObjectMothers
     public class UserObjectMother
     {
         //Create customer with only username and password
-        public static User CreateCleanCustomer()
+        public static User CreateCleanCustomer(int id, string username)
         {
-            Validations validations = CreatValidations();
-            return new User{Id = 100, Role = User.UserRole.Customer, Validations = validations};
+            Validations validations = CreatValidations(username);
+            return new User{Id = id, Role = UserRole.Customer, Validations = validations};
         }
 
         public static User CreateCustomerWithAddress()
         {
-            Validations validations = CreatValidations();
+            Validations validations = CreatValidations("");
             Address address = CreateAddress();
-            return new User{ Id = 100, Role = User.UserRole.Customer, Validations = validations, Address = address };
+            return new User{ Id = 100, Role = UserRole.Customer, Validations = validations, Address = address };
         }
 
         public static Address CreateAddress()
@@ -28,9 +28,9 @@ namespace Shop.ObjectMothers
             return new Name{FirstName = "Imie", LastName = "Nazwisko"};
         }
 
-        public static Validations CreatValidations()
+        public static Validations CreatValidations(string username)
         {
-            return new Validations{Logged = false, Password = "haslo", Username = "uzytkownik"};
+            return new Validations{Logged = false, Password = "haslo", Username = username};
         }
     }
 }

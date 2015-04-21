@@ -2,18 +2,12 @@
 {
     public class User
     {
-        public enum UserRole
-        {
-            Customer,
-            Worker
-        }
-
-        public int Id { get; set; }
-        public Address Address { get; set; }
-        public Name Name { get; set; }
-        public string EmailAddress { get; set; }
-        public int PhoneNumber { get; set; }
-        public UserRole Role { get; set; }
-        public Validations Validations { get; set; }
+        public virtual int Id { get; set; }
+        public virtual Address Address { get; set; }
+        public virtual Name Name { get; set; }
+        public virtual string EmailAddress { get; set; }
+        public virtual int PhoneNumber { get; set; }
+        public virtual UserRole Role { get; set; }
+        public virtual Validations Validations { get; set; }
     }
 }

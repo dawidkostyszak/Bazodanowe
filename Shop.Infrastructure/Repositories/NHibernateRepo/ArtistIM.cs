@@ -8,13 +8,6 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 {
     public class ArtistIM : IArtistRepository
     {
-        public ArtistIM()
-        {
-            Insert(new Artist {Id = 1, Name = "Artist"});
-            Insert(new Artist {Id = 2, Name = "Artist2"});
-            Insert(new Artist {Id = 3, Name = "Artist3"});
-        }
-
         public void Insert(Artist artist)
         {
             using (var session = NHibernateHelper.OpenSession())

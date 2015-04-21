@@ -11,12 +11,7 @@ namespace Shop.ObjectMothers
         public static Order CreateOrder()
         {
             User customer = UserObjectMother.CreateCustomerWithAddress();
-            return new Order{Id = 100, CreatedAt = DateTime.Now, Customer = customer, Invoice = new Invoice(), Price = 100, Products = new List<Album>(), Status = Order.OrderStatus.Created};
-        }
-
-        public static Invoice CreateInvoice()
-        {
-            return new Invoice {Id = 100, InvoiceNumber = "ABC/100/DEF"};
+            return new Order { Id = 100, CreatedAt = DateTime.Now, Customer = customer, InvoiceNumber = "ABC/100/DEF", Price = 100, Products = new List<Album>(), Status = OrderStatus.Created };
         }
     }
 }

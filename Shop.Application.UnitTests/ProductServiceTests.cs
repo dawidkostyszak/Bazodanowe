@@ -43,6 +43,18 @@ namespace Shop.Application.UnitTests
     [TestClass]
     public class ProductServiceReturnTests
     {
+        public IProductService ps = new ProductService();
+
+        public void CreateArtisCategoryAlbum(int id)
+        {
+            Album album = ProductObjectMother.CreateAlbum(id);
+            Artist artist = ProductObjectMother.CreateArtist(id);
+            Category category = ProductObjectMother.CreateCategory(id);
+            ps.CreateNewArtist(artist);
+            ps.CreateNewCategory(category);
+            ps.CreateNewAlbum(album);
+        }
+
         [TestCleanup]
         public void CleanAfterTest()
         {
@@ -60,64 +72,52 @@ namespace Shop.Application.UnitTests
             }
         }
 
-        public IProductService ps = new ProductService();
-
-        public void CreateArtisCategoryAlbum()
-        {
-            Album album = ProductObjectMother.CreateAlbum();
-            Artist artist = ProductObjectMother.CreateArtist();
-            Category category = ProductObjectMother.CreateCategory();
-            ps.CreateNewArtist(artist);
-            ps.CreateNewCategory(category);
-            ps.CreateNewAlbum(album);
-        }
-
         //Album
         [TestMethod]
         public void CheckGetAllAlbumMethodResult()
         {
+            CreateArtisCategoryAlbum(1);
+            CreateArtisCategoryAlbum(2);
             List<Album> albums = ps.GetAllAlbums();
 
-            Assert.AreEqual(3, albums.Count);
+            Assert.AreEqual(2, albums.Count);
         }
 
         [TestMethod]
         public void CheckAddAlbumMethodResult()
         {
-            CreateArtisCategoryAlbum();
+            CreateArtisCategoryAlbum(1);
             List<Album> albums = ps.GetAllAlbums();
 
-            Assert.AreEqual(4, albums.Count);
+            Assert.AreEqual(1, albums.Count);
         }
 
         [TestMethod]
         public void CheckDeleteAlbumMethodResult()
         {
-            Album album = ProductObjectMother.CreateAlbum();
-            CreateArtisCategoryAlbum();
+            CreateArtisCategoryAlbum(1);
 
-            ps.DeleteAlbum(album.Id);
+            ps.DeleteAlbum(1);
             List<Album> albums = ps.GetAllAlbums();
 
-            Assert.AreEqual(3, albums.Count);
+            Assert.AreEqual(0, albums.Count);
         }
 
         [TestMethod]
         public void CheckFindAlbumMethodResult()
         {
-            Album album = ProductObjectMother.CreateAlbum();
-            CreateArtisCategoryAlbum();
+            CreateArtisCategoryAlbum(1);
 
-            Album result = ps.GetAlbum(album.Id);
+            Album result = ps.GetAlbum(1);
 
-            Assert.AreEqual(album.Id, result.Id);
+            Assert.AreEqual(1, result.Id);
         }
 
         [TestMethod]
         public void CheckGetAlbumsForCategoryMethodResult()
         {
-            Category category = ProductObjectMother.CreateCategory();
-            CreateArtisCategoryAlbum();
+            Category category = ProductObjectMother.CreateCategory(1);
+            CreateArtisCategoryAlbum(1);
 
             List<Album> albums = ps.GetAllAlbumsForCategory(category);
 
@@ -127,8 +127,8 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckGetAlbumsForArtistMethodResult()
         {
-            Artist artist = ProductObjectMother.CreateArtist();
-            CreateArtisCategoryAlbum();
+            Artist artist = ProductObjectMother.CreateArtist(1);
+            CreateArtisCategoryAlbum(1);
 
             List<Album> albums = ps.GetAllAlbumsForArtist(artist);
 
@@ -139,64 +139,68 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckGetAllArtistsMethodResult()
         {
+            CreateArtisCategoryAlbum(1);
+            CreateArtisCategoryAlbum(2);
             List<Artist> artists = ps.GetAllArtists();
 
-            Assert.AreEqual(3, artists.Count);
+            Assert.AreEqual(2, artists.Count);
         }
 
         [TestMethod]
         public void CheckCreateArtistMethodResult()
         {
-            Artist artist = ProductObjectMother.CreateArtist();
+            Artist artist = ProductObjectMother.CreateArtist(1);
 
             ps.CreateNewArtist(artist);
             List<Artist> artists = ps.GetAllArtists();
 
-            Assert.AreEqual(4, artists.Count);
+            Assert.AreEqual(1, artists.Count);
         }
 
         [TestMethod]
         public void CheckDeleteArtistMethodResult()
         {
-            Artist artist = ProductObjectMother.CreateArtist();
+            Artist artist = ProductObjectMother.CreateArtist(1);
             ps.CreateNewArtist(artist);
 
             ps.DeleteArtist(artist.Id);
             List<Artist> artists = ps.GetAllArtists();
 
-            Assert.AreEqual(3, artists.Count);
+            Assert.AreEqual(0, artists.Count);
         }
 
         //Category
         [TestMethod]
         public void CheckGetAllCategoriesMethodResult()
         {
+            CreateArtisCategoryAlbum(1);
+            CreateArtisCategoryAlbum(2);
             List<Category> categories = ps.GetAllCategory();
 
-            Assert.AreEqual(3, categories.Count);
+            Assert.AreEqual(2, categories.Count);
         }
 
         [TestMethod]
         public void CheckCreateCategoryMethodResult()
         {
-            Category category = ProductObjectMother.CreateCategory();
+            Category category = ProductObjectMother.CreateCategory(1);
 
             ps.CreateNewCategory(category);
             List<Category> categories = ps.GetAllCategory();
 
-            Assert.AreEqual(4, categories.Count);
+            Assert.AreEqual(1, categories.Count);
         }
 
         [TestMethod]
         public void CheckDeleteCategoryMethodResult()
         {
-            Category category = ProductObjectMother.CreateCategory();
+            Category category = ProductObjectMother.CreateCategory(1);
             ps.CreateNewCategory(category);
 
             ps.DeleteCategory(category.Id);
             List<Category> categories = ps.GetAllCategory();
 
-            Assert.AreEqual(3, categories.Count);
+            Assert.AreEqual(0, categories.Count);
         }
     }
 }

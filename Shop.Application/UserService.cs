@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Shop.Domain.Model.User;
 using Shop.Domain.Model.User.Repositories;
-using Shop.Infrastructure.Repositories;
+using Shop.Infrastructure.Repositories.NHibernateRepo;
 
 namespace Shop.Application
 {

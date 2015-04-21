@@ -2,7 +2,7 @@
 {
     public class Name
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public virtual string FirstName { get; set; }
+        public virtual string LastName { get; set; }
     }
 }

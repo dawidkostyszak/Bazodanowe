@@ -12,9 +12,5 @@ namespace Shop.Application
         List<Order> GetAllOrders();
         List<Order> GetAllOrdersByCity(string city);
         List<Order> GetAllOrdersByUser(int customerId);
-
-        //Invoice
-        void CreateNewInvoice(Invoice invoice);
-        Invoice GetInvoice(int invoiceId);
     }
 }

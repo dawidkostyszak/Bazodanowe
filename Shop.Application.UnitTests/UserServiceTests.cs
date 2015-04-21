@@ -10,58 +10,68 @@ namespace Shop.Application.UnitTests
     {
         public IUserService us = new UserService();
 
+        public void CreateUser(int id, string username)
+        {
+            User user = UserObjectMother.CreateCleanCustomer(id, username);
+            us.CreateUser(user);
+        }
+
+        [TestCleanup]
+        public void CleanAfterTest()
+        {
+            foreach (var u in us.GetAllUsers())
+            {
+                us.DeleteUser(u.Id);
+            }
+        }
+
         [TestMethod]
         public void CheckGetAllUsersMethodResult()
         {
+            CreateUser(1, "uzytkownik");
+            CreateUser(2, "uzytkownik2");
             List<User> users = us.GetAllUsers();
 
-            Assert.AreEqual(3, users.Count);
+            Assert.AreEqual(2, users.Count);
         }
 
         [TestMethod]
         public void CheckCreateUserMethodResult()
         {
-            User user = UserObjectMother.CreateCleanCustomer();
-            us.CreateUser(user);
+            CreateUser(1, "uzytkownik");
             List<User> users = us.GetAllUsers();
 
-            Assert.AreEqual(4, users.Count);
+            Assert.AreEqual(1, users.Count);
         }
 
         [TestMethod]
         public void CheckDeleteUserMethodResult()
         {
-            User user = UserObjectMother.CreateCleanCustomer();
-            us.CreateUser(user);
-            List<User> users = us.GetAllUsers();
-            Assert.AreEqual(4, users.Count);
-
-            us.DeleteUser(user.Id);
+            CreateUser(1, "uzytkownik");
+            us.DeleteUser(1);
             List<User> result = us.GetAllUsers();
 
-            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [TestMethod]
         public void CheckFindUserMethodResult()
         {
-            User user = UserObjectMother.CreateCleanCustomer();
-            us.CreateUser(user);
-            User result = us.GetUser(user.Id);
+            CreateUser(1, "uzytkownik");
+            User result = us.GetUser(1);
 
-            Assert.AreEqual(user.Id, result.Id);
+            Assert.AreEqual(1, result.Id);
         }
 
         [TestMethod]
         public void CheckEditUserAddressrMethodResult()
         {
-            User user = UserObjectMother.CreateCleanCustomer();
-            us.CreateUser(user);
+            CreateUser(1, "uzytkownik");
 
             Address address = UserObjectMother.CreateAddress();
-            us.EditUserAdress(user.Id, address);
+            us.EditUserAdress(1, address);
 
-            User result = us.GetUser(user.Id);
+            User result = us.GetUser(1);
 
             Assert.AreEqual("Miasto", result.Address.City);
             Assert.AreEqual("Budynek", result.Address.Flat);
@@ -73,13 +83,12 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckEditUserNameMethodResult()
         {
-            User user = UserObjectMother.CreateCleanCustomer();
-            us.CreateUser(user);
+            CreateUser(1, "uzytkownik");
 
             Name name = UserObjectMother.CreateName();
-            us.EditUserName(user.Id, name);
+            us.EditUserName(1, name);
 
-            User result = us.GetUser(user.Id);
+            User result = us.GetUser(1);
 
             Assert.AreEqual("Imie", result.Name.FirstName);
             Assert.AreEqual("Nazwisko", result.Name.LastName);
@@ -88,12 +97,11 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckEditUserPasswordMethodResult()
         {
-            User user = UserObjectMother.CreateCleanCustomer();
-            us.CreateUser(user);
+            CreateUser(1, "uzytkownik");
 
-            us.EditUserPassword(user.Id, "admin");
+            us.EditUserPassword(1, "admin");
 
-            User result = us.GetUser(user.Id);
+            User result = us.GetUser(1);
 
             Assert.AreEqual("admin", result.Validations.Password);
         }
@@ -101,12 +109,11 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckEditUserPhoneNumberMethodResult()
         {
-            User user = UserObjectMother.CreateCleanCustomer();
-            us.CreateUser(user);
+            CreateUser(1, "uzytkownik");
 
-            us.EditUserPhoneNumber(user.Id, 012345678);
+            us.EditUserPhoneNumber(1, 012345678);
 
-            User result = us.GetUser(user.Id);
+            User result = us.GetUser(1);
 
             Assert.AreEqual(012345678, result.PhoneNumber);
         }
@@ -114,8 +121,8 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckLoginUserMethodResult()
         {
-            User user = UserObjectMother.CreateCleanCustomer();
-            us.CreateUser(user);
+            User user = UserObjectMother.CreateCleanCustomer(1, "uzytkownik");
+            CreateUser(1, "uzytkownik");
 
             bool logged = us.LoginUser(user.Validations.Username, user.Validations.Password);
 
@@ -125,8 +132,8 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckLogoutUserMethodResult()
         {
-            User user = UserObjectMother.CreateCleanCustomer();
-            us.CreateUser(user);
+            User user = UserObjectMother.CreateCleanCustomer(1, "uzytkownik");
+            CreateUser(1, "uzytkownik");
 
             bool logged = us.LoginUser(user.Validations.Username, user.Validations.Password);
             Assert.IsTrue(logged);

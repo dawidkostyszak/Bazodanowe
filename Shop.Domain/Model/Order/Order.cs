@@ -5,22 +5,17 @@ namespace Shop.Domain.Model.Order
 {
     public class Order
     {
-        public enum OrderStatus
-        {
-            Created,
-            ToPay,
-            Paid,
-            Shipment,
-            Finished,
-            Cancelled
-        }
+        public virtual int Id { get; set; }
+        public virtual DateTime CreatedAt { get; set; }
+        public virtual User.User Customer { get; set; }
+        public virtual string InvoiceNumber { get; set; }
+        public virtual ICollection<Album.Album> Products { get; set; }
+        public virtual int Price { get; set; }
+        public virtual OrderStatus Status { get; set; }
 
-        public int Id { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public User.User Customer { get; set; }
-        public Invoice Invoice { get; set; }
-        public List<Album.Album> Products { get; set; }
-        public int Price { get; set; }
-        public OrderStatus Status { get; set; }
+        public Order()
+        {
+            Products = new HashSet<Album.Album>();
+        }
     }
 }

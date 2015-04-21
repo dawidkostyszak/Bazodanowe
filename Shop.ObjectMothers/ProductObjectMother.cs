@@ -7,21 +7,21 @@ namespace Shop.ObjectMothers
 {
     public class ProductObjectMother
     {
-        public static Album CreateAlbum()
+        public static Album CreateAlbum(int id)
         {
-            Artist artist = CreateArtist();
-            Category category = CreateCategory();
-            return new Album { Id = 100, Content = "Utwory", Artist = artist, Categories = new List<Category> { category }, Name = "Tytul", Price = 10, Type = "CD", PublishDate = DateTime.Now };
+            Artist artist = CreateArtist(id);
+            Category category = CreateCategory(id);
+            return new Album { Id = id, Content = "Utwory", Artist = artist, Categories = new List<Category> { category }, Name = "Tytul", Price = 10, Type = "CD", PublishDate = DateTime.Now };
         }
 
-        public static Artist CreateArtist()
+        public static Artist CreateArtist(int id)
         {
-            return new Artist{Id = 100, Name = "Eminem"};
+            return new Artist{Id = id, Name = "Eminem"};
         }
 
-        public static Category CreateCategory()
+        public static Category CreateCategory(int id)
         {
-            return new Category { Id = 100, Name = "Hip-Hop" };
+            return new Category { Id = id, Name = "Hip-Hop" };
         }
     }
 }

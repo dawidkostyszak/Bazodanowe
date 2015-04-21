@@ -1,0 +1,153 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using NHibernate.Linq;
+using Shop.Domain.Model.User;
+using Shop.Domain.Model.User.Repositories;
+
+namespace Shop.Infrastructure.Repositories.NHibernateRepo
+{
+    public class UserIM : IUserRepository
+    {
+        public void Insert(User user)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    session.Save(user);
+                    transaction.Commit();
+                }
+            }
+        }
+
+        public void EditAddress(int id, Address newAddress)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
+                    userQuery.Address = newAddress;
+                    session.SaveOrUpdate(userQuery);
+                    transaction.Commit();
+                }
+            }
+        }
+
+        public void EditName(int id, Name newName)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
+                    userQuery.Name = newName;
+                    session.SaveOrUpdate(userQuery);
+                    transaction.Commit();
+                }
+            }
+        }
+
+        public void EditEmailAddress(int id, string newEmailAddress)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
+                    userQuery.EmailAddress = newEmailAddress;
+                    session.SaveOrUpdate(userQuery);
+                    transaction.Commit();
+                }
+            }
+        }
+
+        public void EditPassword(int id, string newPassword)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
+                    userQuery.Validations.Password = newPassword;
+                    session.SaveOrUpdate(userQuery);
+                    transaction.Commit();
+                }
+            }
+        }
+
+        public void EditPhoneNumber(int id, int newPhoneNumber)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
+                    userQuery.PhoneNumber = newPhoneNumber;
+                    session.SaveOrUpdate(userQuery);
+                    transaction.Commit();
+                }
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
+                    session.Delete(userQuery);
+                    transaction.Commit();
+                }
+            }
+        }
+
+        public User Login(string username, string password)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var userQuery = (from u in session.Query<User>() where u.Validations.Username == username && u.Validations.Password == password select u).Single();
+                    userQuery.Validations.Logged = true;
+                    session.SaveOrUpdate(userQuery);
+                    transaction.Commit();
+                    return userQuery;
+                }
+            }
+        }
+
+        public User Logout(int id)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
+                    userQuery.Validations.Logged = false;
+                    session.SaveOrUpdate(userQuery);
+                    transaction.Commit();
+                    return userQuery;
+                }
+            }
+        }
+
+        public List<User> FindAll()
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                return session.Query<User>().ToList();
+            }
+        }
+
+        public User Find(int id)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                return (from u in session.Query<User>() where u.Id == id select u).Single();
+            }
+        }
+    }
+}

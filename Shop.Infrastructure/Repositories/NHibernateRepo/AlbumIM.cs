@@ -10,41 +10,6 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 {
     public class AlbumIM : IAlbumRepository
     {
-        public AlbumIM()
-        {
-
-            Insert(new Album {
-                Id = 1,
-                Name = "Test",
-                PublishDate = DateTime.Now,
-                Artist = new Artist { Id = 1, Name = "Artist" },
-                Categories = new List<Category> { new Category { Id = 1, Name = "Rock" } },
-                Content = "1",
-                Price = 1,
-                Type = "CD"
-            });
-            Insert(new Album {
-                Id = 2,
-                Name = "Test2",
-                PublishDate = DateTime.Now,
-                Artist = new Artist { Id = 2, Name = "Artist2" },
-                Categories = new List<Category> { new Category { Id = 2, Name = "Soul" } },
-                Content = "2",
-                Price = 2,
-                Type = "Vinyl"
-            });
-            Insert(new Album {
-                Id = 3,
-                Name = "Test3",
-                PublishDate = DateTime.Now,
-                Artist = new Artist { Id = 3, Name = "Artist3" },
-                Categories = new List<Category> { new Category { Id = 3, Name = "Jazz" } },
-                Content = "3",
-                Price = 3,
-                Type = "CD"
-            });
-        }
-
         public void Insert(Album album)
         {
             using (var session = NHibernateHelper.OpenSession())
