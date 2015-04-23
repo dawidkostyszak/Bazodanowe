@@ -4,7 +4,7 @@ namespace Shop.Domain.Model.Album.Repositories
 {
     public interface IAlbumRepository
     {
-        void Insert(Album album);
+        Album Insert(Album album);
 
         void Delete(int id);
 

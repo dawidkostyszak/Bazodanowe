@@ -4,7 +4,7 @@ namespace Shop.Domain.Model.Artist.Repositories
 {
     public interface IArtistRepository
     {
-        void Insert(Artist artist);
+        Artist Insert(Artist artist);
 
         void Delete(int id);
 

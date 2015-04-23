@@ -19,9 +19,10 @@ namespace Shop.Infrastructure.Repositories
             };
         }
 
-        public void Insert(Category category)
+        public Category Insert(Category category)
         {
             categories.Add(category);
+            return category;
         }
 
         public void Delete(int id)

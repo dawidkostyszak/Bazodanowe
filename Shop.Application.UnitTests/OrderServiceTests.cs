@@ -12,12 +12,12 @@ namespace Shop.Application.UnitTests
         public IOrderService os = new OrderService();
         public IUserService us = new UserService();
 
-        public void CreateOrder(int id, string username)
+        public Order CreateOrder(string username)
         {
-            Order order = OrderObjectMother.CreateOrder(id, username);
-            User user = UserObjectMother.CreateCustomerWithAddress(id, username);
-            us.CreateUser(user);
-            os.CreateNewOrder(order);
+            Order order = OrderObjectMother.CreateOrder(username);
+            User user = us.CreateUser(UserObjectMother.CreateCustomerWithAddress(username));
+            order.Customer = user;
+            return os.CreateNewOrder(order);
         }
 
         [TestCleanup]
@@ -36,8 +36,8 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckGetAllOrdersMethodResult()
         {
-            CreateOrder(1, "username1");
-            CreateOrder(2, "username2");
+            CreateOrder("username1");
+            CreateOrder("username2");
             List<Order> orders = os.GetAllOrders();
 
             Assert.AreEqual(2, orders.Count);
@@ -46,7 +46,7 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckCreateOrderMethodResult()
         {
-            CreateOrder(1, "username");
+            CreateOrder("username");
             List<Order> orders = os.GetAllOrders();
 
             Assert.AreEqual(1, orders.Count);
@@ -55,9 +55,9 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckDeleteOrderMethodResult()
         {
-            CreateOrder(1, "username");
+            var order = CreateOrder("username");
 
-            os.DeleteOrder(1);
+            os.DeleteOrder(order.Id);
             List<Order> result = os.GetAllOrders();
 
             Assert.AreEqual(0, result.Count);
@@ -66,26 +66,24 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckGetOrderMethodResult()
         {
-            CreateOrder(1, "username");
-            Order result = os.GetOrder(1);
-            Assert.AreEqual(1, result.Id);
+            var order = CreateOrder("username");
+            Order result = os.GetOrder(order.Id);
+            Assert.AreEqual(order.Id, result.Id);
         }
 
         [TestMethod]
         public void CheckGetOrderByCityMethodResult()
         {
-            User user = UserObjectMother.CreateCustomerWithAddress(1, "username");
-            CreateOrder(1, "username");
-            List<Order> orders = os.GetAllOrdersByCity(user.Address.City);
+            var order = CreateOrder("username");
+            List<Order> orders = os.GetAllOrdersByCity(order.Customer.Address.City);
             Assert.AreEqual(1, orders.Count);
         }
 
         [TestMethod]
         public void CheckGetOrderByUserMethodResult()
         {
-            User user = UserObjectMother.CreateCustomerWithAddress(1, "username");
-            CreateOrder(1, "username");
-            List<Order> orders = os.GetAllOrdersByUser(user.Id);
+            var order = CreateOrder("username");
+            List<Order> orders = os.GetAllOrdersByUser(order.Customer.Id);
             Assert.AreEqual(1, orders.Count);
         }
     }

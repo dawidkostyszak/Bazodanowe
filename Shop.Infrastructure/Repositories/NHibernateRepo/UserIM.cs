@@ -9,7 +9,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 {
     public class UserIM : IUserRepository
     {
-        public void Insert(User user)
+        public User Insert(User user)
         {
             using (var session = NHibernateHelper.OpenSession())
             {
@@ -17,6 +17,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
                 {
                     session.Insert(user);
                     transaction.Commit();
+                    return user;
                 }
             }
         }

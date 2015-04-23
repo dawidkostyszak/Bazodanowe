@@ -4,7 +4,7 @@ namespace Shop.Domain.Model.Album.Repositories
 {
     public interface ICategoryRepository
     {
-        void Insert(Category category);
+        Category Insert(Category category);
 
         void Delete(int id);
 

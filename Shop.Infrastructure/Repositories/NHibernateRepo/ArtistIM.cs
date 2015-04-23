@@ -8,7 +8,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 {
     public class ArtistIM : IArtistRepository
     {
-        public void Insert(Artist artist)
+        public Artist Insert(Artist artist)
         {
             using (var session = NHibernateHelper.OpenSession())
             {
@@ -16,6 +16,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
                 {
                     session.Insert(artist);
                     transaction.Commit();
+                    return artist;
                 }
             }
         }

@@ -4,7 +4,7 @@ namespace Shop.Domain.Model.User.Repositories
 {
     public interface IUserRepository
     {
-        void Insert(User user);
+        User Insert(User user);
 
         void EditAddress(int id, Address newAddress);
 

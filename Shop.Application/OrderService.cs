@@ -19,8 +19,9 @@ namespace Shop.Application
 			this._orderRepository = orderRepository;
 		}
 
-		public void CreateNewOrder(Order order) {
-			_orderRepository.Insert (order);
+        public Order CreateNewOrder(Order order)
+        {
+			return _orderRepository.Insert (order);
 		}
 		public void DeleteOrder(int orderId) {
 			_orderRepository.Delete(orderId);

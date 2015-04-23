@@ -6,7 +6,7 @@ namespace Shop.Application
     public interface IOrderService
     {
         //Order
-        void CreateNewOrder(Order order);
+        Order CreateNewOrder(Order order);
         void DeleteOrder(int id);
         Order GetOrder(int orderId);
         List<Order> GetAllOrders();

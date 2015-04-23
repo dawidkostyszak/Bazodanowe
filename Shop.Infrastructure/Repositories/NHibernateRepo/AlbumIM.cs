@@ -10,7 +10,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 {
     public class AlbumIM : IAlbumRepository
     {
-        public void Insert(Album album)
+        public Album Insert(Album album)
         {
             using (var session = NHibernateHelper.OpenSession())
 	        {
@@ -18,6 +18,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 	            {
                     session.Insert(album);
 	                transaction.Commit();
+	                return album;
 	            }
 	        }
         }

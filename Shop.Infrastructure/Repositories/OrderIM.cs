@@ -22,9 +22,10 @@ namespace Shop.Infrastructure.Repositories
             };
         }
 
-        public void Insert(Order order)
+        public Order Insert(Order order)
         {
             orders.Add(order);
+            return order;
         }
 
         public void Delete(int id)

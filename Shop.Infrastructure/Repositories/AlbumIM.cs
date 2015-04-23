@@ -21,9 +21,10 @@ namespace Shop.Infrastructure.Repositories
             };
         }
 
-        public void Insert(Album album)
+        public Album Insert(Album album)
         {
             albums.Add(album);
+            return album;
         }
 
         public void Delete(int id)

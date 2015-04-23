@@ -4,7 +4,7 @@ namespace Shop.Domain.Model.Order.Repositories
 {
     public interface IOrderRepository
     {
-        void Insert(Order order);
+        Order Insert(Order order);
 
         void Delete(int id);
 

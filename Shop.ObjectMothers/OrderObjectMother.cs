@@ -8,10 +8,10 @@ namespace Shop.ObjectMothers
 {
     public class OrderObjectMother
     {
-        public static Order CreateOrder(int id, string username)
+        public static Order CreateOrder(string username)
         {
-            User customer = UserObjectMother.CreateCustomerWithAddress(id, username);
-            return new Order { Id = id, CreatedAt = DateTime.Now, Customer = customer, InvoiceNumber = "ABC/100/DEF", Price = 100, Products = new List<Album>(), Status = OrderStatus.Created };
+            User customer = UserObjectMother.CreateCustomerWithAddress(username);
+            return new Order { CreatedAt = DateTime.Now, Customer = customer, InvoiceNumber = "ABC/100/DEF", Price = 100, Products = new List<Album>(), Status = OrderStatus.Created };
         }
     }
 }

@@ -19,9 +19,10 @@ namespace Shop.Infrastructure.Repositories
             };
         }
 
-        public void Insert(Artist artist)
+        public Artist Insert(Artist artist)
         {
             artists.Add(artist);
+            return artist;
         }
 
         public void Delete(int id)

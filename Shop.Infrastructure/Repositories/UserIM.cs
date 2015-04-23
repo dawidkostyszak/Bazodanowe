@@ -19,9 +19,10 @@ namespace Shop.Infrastructure.Repositories
             };
         }
 
-        public void Insert(User user)
+        public User Insert(User user)
         {
             _users.Add(user);
+            return user;
         }
 
         public void EditAddress(int id, Address newAddress)

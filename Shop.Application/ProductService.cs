@@ -29,9 +29,9 @@ namespace Shop.Application
         }
 
         //Album
-        public void CreateNewAlbum(Album album)
+        public Album CreateNewAlbum(Album album)
         {
-            _albumRepository.Insert(album);
+            return _albumRepository.Insert(album);
         }
         public void DeleteAlbum(int id)
         {
@@ -59,9 +59,9 @@ namespace Shop.Application
         }
 
         //Artist
-        public void CreateNewArtist(Artist artist)
+        public Artist CreateNewArtist(Artist artist)
         {
-            _artistRepository.Insert(artist);
+            return _artistRepository.Insert(artist);
         }
         public void DeleteArtist(int id)
         {
@@ -78,9 +78,9 @@ namespace Shop.Application
         }
 
         //Category
-        public void CreateNewCategory(Category category)
+        public Category CreateNewCategory(Category category)
         {
-            _categoryRepository.Insert(category);
+            return _categoryRepository.Insert(category);
         }
         public void DeleteCategory(int id)
         {

@@ -5,7 +5,7 @@ namespace Shop.Application
 {
     public interface IUserService
     {
-        void CreateUser(User user);
+        User CreateUser(User user);
         void EditUserAdress(int id, Address newAddress);
         void EditUserName(int id, Name newName);
         void EditUserEmailAddress(int id, string newEmailAddress);

@@ -8,7 +8,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 {
     public class OrderIM : IOrderRepository
     {
-        public void Insert(Order order)
+        public Order Insert(Order order)
         {
             using (var session = NHibernateHelper.OpenSession())
             {
@@ -16,6 +16,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
                 {
                     session.Insert(order);
                     transaction.Commit();
+                    return order;
                 }
             }
         }

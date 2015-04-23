@@ -19,9 +19,9 @@ namespace Shop.Application
             this._userRepository = userRepository;
         }
 
-        public void CreateUser(User user)
+        public User CreateUser(User user)
         {
-            _userRepository.Insert(user);
+            return _userRepository.Insert(user);
         }
 
         public void EditUserAdress(int id, Address newAddress)

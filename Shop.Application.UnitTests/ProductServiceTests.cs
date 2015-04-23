@@ -45,14 +45,15 @@ namespace Shop.Application.UnitTests
     {
         public IProductService ps = new ProductService();
 
-        public void CreateArtisCategoryAlbum()
+        public Album CreateArtisCategoryAlbum()
         {
+            
+            Artist artist = ps.CreateNewArtist(ProductObjectMother.CreateArtist());
+            Category category = ps.CreateNewCategory(ProductObjectMother.CreateCategory());
             Album album = ProductObjectMother.CreateAlbum();
-            Artist artist = ProductObjectMother.CreateArtist();
-            Category category = ProductObjectMother.CreateCategory();
-            ps.CreateNewArtist(artist);
-            ps.CreateNewCategory(category);
-            ps.CreateNewAlbum(album);
+            album.Artist = artist;
+            album.Categories.Add(category);
+            return ps.CreateNewAlbum(album);
         }
 
         [TestCleanup]
@@ -76,8 +77,8 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckGetAllAlbumMethodResult()
         {
-            CreateArtisCategoryAlbum(1);
-            CreateArtisCategoryAlbum(2);
+            CreateArtisCategoryAlbum();
+            CreateArtisCategoryAlbum();
 
             List<Album> albums = ps.GetAllAlbums();
 
@@ -87,7 +88,7 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckAddAlbumMethodResult()
         {
-            CreateArtisCategoryAlbum(1);
+            CreateArtisCategoryAlbum();
             List<Album> albums = ps.GetAllAlbums();
 
             Assert.AreEqual(1, albums.Count);
@@ -96,9 +97,9 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckDeleteAlbumMethodResult()
         {
-            CreateArtisCategoryAlbum(1);
+            var album = CreateArtisCategoryAlbum();
 
-            ps.DeleteAlbum(1);
+            ps.DeleteAlbum(album.Id);
             List<Album> albums = ps.GetAllAlbums();
 
             Assert.AreEqual(0, albums.Count);
@@ -107,21 +108,19 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckFindAlbumMethodResult()
         {
-            CreateArtisCategoryAlbum(1);
+            var album = CreateArtisCategoryAlbum();
 
-            Album result = ps.GetAlbum(1);
+            Album result = ps.GetAlbum(album.Id);
 
-            Assert.AreEqual(1, result.Id);
+            Assert.AreEqual(album.Id, result.Id);
         }
 
         [TestMethod]
         public void CheckGetAlbumsForCategoryMethodResult()
         {
-            Category category = ProductObjectMother.CreateCategory(1);
-            CreateArtisCategoryAlbum(1);
+            var album = CreateArtisCategoryAlbum();
 
-            List<Album> rec = ps.GetAllAlbums();
-            List<Album> albums = ps.GetAllAlbumsForCategory(category);
+            List<Album> albums = ps.GetAllAlbumsForCategory(album.Categories[0]);
 
             Assert.AreEqual(1, albums.Count);
         }
@@ -129,10 +128,9 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckGetAlbumsForArtistMethodResult()
         {
-            Artist artist = ProductObjectMother.CreateArtist(1);
-            CreateArtisCategoryAlbum(1);
+            var album = CreateArtisCategoryAlbum();
 
-            List<Album> albums = ps.GetAllAlbumsForArtist(artist);
+            List<Album> albums = ps.GetAllAlbumsForArtist(album.Artist);
 
             Assert.AreEqual(1, albums.Count);
         }
@@ -140,7 +138,7 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckGetAlbumsForTypeMethodResult()
         {
-            CreateArtisCategoryAlbum(1);
+            CreateArtisCategoryAlbum();
 
             List<Album> albums = ps.GetAllAlbumsForType("CD");
 
@@ -151,8 +149,8 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckGetAllArtistsMethodResult()
         {
-            CreateArtisCategoryAlbum(1);
-            CreateArtisCategoryAlbum(2);
+            CreateArtisCategoryAlbum();
+            CreateArtisCategoryAlbum();
             List<Artist> artists = ps.GetAllArtists();
 
             Assert.AreEqual(2, artists.Count);
@@ -161,7 +159,7 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckGetArtistMethodResult()
         {
-            Artist artist = ProductObjectMother.CreateArtist(1);
+            Artist artist = ProductObjectMother.CreateArtist();
             ps.CreateNewArtist(artist);
             Artist result = ps.GetArtist(artist.Id);
 
@@ -171,7 +169,7 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckCreateArtistMethodResult()
         {
-            Artist artist = ProductObjectMother.CreateArtist(1);
+            Artist artist = ProductObjectMother.CreateArtist();
 
             ps.CreateNewArtist(artist);
             List<Artist> artists = ps.GetAllArtists();
@@ -182,7 +180,7 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckDeleteArtistMethodResult()
         {
-            Artist artist = ProductObjectMother.CreateArtist(1);
+            Artist artist = ProductObjectMother.CreateArtist();
             ps.CreateNewArtist(artist);
 
             ps.DeleteArtist(artist.Id);
@@ -195,8 +193,8 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckGetAllCategoriesMethodResult()
         {
-            CreateArtisCategoryAlbum(1);
-            CreateArtisCategoryAlbum(2);
+            CreateArtisCategoryAlbum();
+            CreateArtisCategoryAlbum();
             List<Category> categories = ps.GetAllCategory();
 
             Assert.AreEqual(2, categories.Count);
@@ -205,7 +203,7 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckCreateCategoryMethodResult()
         {
-            Category category = ProductObjectMother.CreateCategory(1);
+            Category category = ProductObjectMother.CreateCategory();
 
             ps.CreateNewCategory(category);
             List<Category> categories = ps.GetAllCategory();
@@ -216,7 +214,7 @@ namespace Shop.Application.UnitTests
         [TestMethod]
         public void CheckDeleteCategoryMethodResult()
         {
-            Category category = ProductObjectMother.CreateCategory(1);
+            Category category = ProductObjectMother.CreateCategory();
             ps.CreateNewCategory(category);
 
             ps.DeleteCategory(category.Id);

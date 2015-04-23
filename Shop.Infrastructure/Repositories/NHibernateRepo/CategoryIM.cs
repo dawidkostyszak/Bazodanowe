@@ -8,7 +8,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 {
     public class CategoryIM : ICategoryRepository
     {
-        public void Insert(Category category)
+        public Category Insert(Category category)
         {
             using (var session = NHibernateHelper.OpenSession())
             {
@@ -16,6 +16,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
                 {
                     session.Insert(category);
                     transaction.Commit();
+                    return category;
                 }
             }
         }
