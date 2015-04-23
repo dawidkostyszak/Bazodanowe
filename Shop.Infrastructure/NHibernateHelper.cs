@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using FluentNHibernate.Cfg;
+﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using NHibernate.Tool.hbm2ddl;
 using Shop.Infrastructure.Mappings;
 
 namespace Shop.Infrastructure
@@ -36,7 +36,9 @@ namespace Shop.Infrastructure
                     .Add<NameMap>()
                     .Add<ValidationsMap>()
                     .Add<OrderMap>()
-                ).BuildSessionFactory();                
+                )
+//                .ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(true, true, false))
+                .BuildSessionFactory();                
         }
 
         public static IStatelessSession OpenSession()

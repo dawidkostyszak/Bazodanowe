@@ -45,32 +45,32 @@ namespace Shop.Application.UnitTests
     {
         public IProductService ps = new ProductService();
 
-        public void CreateArtisCategoryAlbum(int id)
+        public void CreateArtisCategoryAlbum()
         {
-            Album album = ProductObjectMother.CreateAlbum(id);
-            Artist artist = ProductObjectMother.CreateArtist(id);
-            Category category = ProductObjectMother.CreateCategory(id);
+            Album album = ProductObjectMother.CreateAlbum();
+            Artist artist = ProductObjectMother.CreateArtist();
+            Category category = ProductObjectMother.CreateCategory();
             ps.CreateNewArtist(artist);
             ps.CreateNewCategory(category);
             ps.CreateNewAlbum(album);
         }
 
-//        [TestCleanup]
-//        public void CleanAfterTest()
-//        {
-//            foreach (var a in ps.GetAllAlbums())
-//            {
-//                ps.DeleteAlbum(a.Id);
-//            }
-//            foreach (var a in ps.GetAllArtists())
-//            {
-//                ps.DeleteArtist(a.Id);
-//            }
-//            foreach (var c in ps.GetAllCategory())
-//            {
-//                ps.DeleteCategory(c.Id);
-//            }
-//        }
+        [TestCleanup]
+        public void CleanAfterTest()
+        {
+            foreach (var a in ps.GetAllAlbums())
+            {
+                ps.DeleteAlbum(a.Id);
+            }
+            foreach (var a in ps.GetAllArtists())
+            {
+                ps.DeleteArtist(a.Id);
+            }
+            foreach (var c in ps.GetAllCategory())
+            {
+                ps.DeleteCategory(c.Id);
+            }
+        }
 
         //Album
         [TestMethod]

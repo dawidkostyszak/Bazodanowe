@@ -16,11 +16,6 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 	        {
 	            using (var transaction = session.BeginTransaction())
 	            {
-	                session.Insert(album.Artist);
-                    foreach (var category in album.Categories)
-                    {
-                        session.Insert(category);
-                    }
                     session.Insert(album);
 	                transaction.Commit();
 	            }

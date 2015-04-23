@@ -7,7 +7,7 @@ namespace Shop.Infrastructure.Mappings
     {
         public UserMap()
         {
-            Id(x => x.Id).Column("UserId").GeneratedBy.HiLo("");
+            Id(x => x.Id).GeneratedBy.HiLo("");
             Component(x => x.Address);
             Component(x => x.Name);
             Map(x => x.EmailAddress);

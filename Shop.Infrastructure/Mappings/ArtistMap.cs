@@ -7,7 +7,7 @@ namespace Shop.Infrastructure.Mappings
     {
         public ArtistMap()
         {
-            Id(x => x.Id).Not.Nullable().GeneratedBy.HiLo("");
+            Id(x => x.Id).GeneratedBy.HiLo("");
             Map(x => x.Name);
             Table("Artist");
         }

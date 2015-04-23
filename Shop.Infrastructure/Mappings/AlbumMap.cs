@@ -7,7 +7,7 @@ namespace Shop.Infrastructure.Mappings
     {
         public AlbumMap()
         {
-            Id(x => x.Id).Not.Nullable().GeneratedBy.HiLo("100");
+            Id(x => x.Id).GeneratedBy.HiLo("");
             References(x => x.Artist).Column("ArtistId").Cascade.All();
             HasManyToMany(x => x.Orders).ParentKeyColumn("AlbumId").ChildKeyColumn("OrderId").Table("OrdersAlbum").Cascade.All();
             HasManyToMany(x => x.Categories).ParentKeyColumn("AlbumId").ChildKeyColumn("CategoryId").Table("CategoriesAlbums").Cascade.All();
