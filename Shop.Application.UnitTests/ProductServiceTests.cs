@@ -52,7 +52,7 @@ namespace Shop.Application.UnitTests
             Category category = ps.CreateNewCategory(ProductObjectMother.CreateCategory());
             Album album = ProductObjectMother.CreateAlbum();
             album.Artist = artist;
-            album.Categories.Add(category);
+            album.Category = category;
             return ps.CreateNewAlbum(album);
         }
 
@@ -120,7 +120,7 @@ namespace Shop.Application.UnitTests
         {
             var album = CreateArtisCategoryAlbum();
 
-            List<Album> albums = ps.GetAllAlbumsForCategory(album.Categories[0]);
+            List<Album> albums = ps.GetAllAlbumsForCategory(album.Category);
 
             Assert.AreEqual(1, albums.Count);
         }

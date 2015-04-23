@@ -7,8 +7,9 @@ namespace Shop.Infrastructure.Mappings
     {
         public ArtistMap()
         {
-            Id(x => x.Id).GeneratedBy.HiLo("");
+            Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Name);
+            HasMany(x => x.Albums).Cascade.All().Inverse().KeyColumn("ArtistId").LazyLoad();
             Table("Artist");
         }
     }

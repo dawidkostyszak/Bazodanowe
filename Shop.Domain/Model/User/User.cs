@@ -11,5 +11,11 @@ namespace Shop.Domain.Model.User
         public virtual int PhoneNumber { get; set; }
         public virtual UserRole Role { get; set; }
         public virtual Validations Validations { get; set; }
+        public virtual IList<Order.Order> Orders { get; set; }
+
+        public User()
+        {
+            Orders = new List<Order.Order>();
+        }
     }
 }

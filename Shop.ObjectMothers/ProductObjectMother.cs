@@ -11,7 +11,7 @@ namespace Shop.ObjectMothers
         {
             Artist artist = CreateArtist();
             Category category = CreateCategory();
-            return new Album {Content = "Utwory", Artist = artist, Categories = new List<Category> { category }, Name = "Tytul", Price = 10, Type = "CD", PublishDate = DateTime.Now };
+            return new Album {Content = "Utwory", Name = "Tytul", Price = 10, Type = "CD", PublishDate = DateTime.Now };
         }
 
         public static Artist CreateArtist()

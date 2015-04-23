@@ -6,6 +6,8 @@ namespace Shop.Domain.Model.Album.Repositories
     {
         Album Insert(Album album);
 
+        void Edit(Album album);
+
         void Delete(int id);
 
         Album Find(int id);

@@ -33,6 +33,12 @@ namespace Shop.Application
         {
             return _albumRepository.Insert(album);
         }
+
+        public void EditAlbum(Album album)
+        {
+            _albumRepository.Edit(album);
+        }
+
         public void DeleteAlbum(int id)
         {
             _albumRepository.Delete(id);

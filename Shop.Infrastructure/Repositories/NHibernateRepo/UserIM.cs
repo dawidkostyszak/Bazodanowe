@@ -147,7 +147,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
         {
             using (var session = NHibernateHelper.OpenSession())
             {
-                return (from u in session.Query<User>() where u.Id == id select u).Single();
+                return session.Get<User>(id);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NHibernate.Linq;
 using Shop.Domain.Model.Album;
@@ -23,6 +22,18 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 	        }
         }
 
+        public void Edit(Album album)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    session.Update(album);
+                    transaction.Commit();
+                }
+            }
+        }
+
         public void Delete(int id)
         {
             using (var session = NHibernateHelper.OpenSession())
@@ -40,7 +51,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
         {
             using (var session = NHibernateHelper.OpenSession())
             {
-                return (from a in session.Query<Album>() where a.Id == id select a).Single();
+                return session.Get<Album>(id);
             }
         }
 
@@ -64,7 +75,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
         {
             using (var session = NHibernateHelper.OpenSession())
             {
-                return (from a in session.Query<Album>() from c in a.Categories where c == category select a).ToList();
+                return (from a in session.Query<Album>() where a.Category == category select a).ToList();
             }
         }
 

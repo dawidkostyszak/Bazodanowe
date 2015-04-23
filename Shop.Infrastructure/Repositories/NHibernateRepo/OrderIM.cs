@@ -38,7 +38,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
         {
             using (var session = NHibernateHelper.OpenSession())
             {
-                return (from o in session.Query<Order>() where o.Id == id select o).Single();
+                return session.Get<Order>(id);
             }
         }
 

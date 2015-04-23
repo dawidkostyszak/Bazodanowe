@@ -11,20 +11,35 @@ namespace Shop.Infrastructure.Repositories
     {
         private List<Album> albums = new List<Album>();
 
-        public AlbumIM()
-        {
-            albums = new List<Album>
-            {
-                new Album {Id = 1, Name = "Test", PublishDate = DateTime.Now, Artist = new Artist(), Categories = new List<Category>(), Content = "1", Price = 1, Type = "CD"},
-                new Album {Id = 2, Name = "Test2", PublishDate = DateTime.Now, Artist = new Artist(), Categories = new List<Category>(), Content = "2", Price = 2, Type = "Vinyl"},
-                new Album {Id = 3, Name = "Test3", PublishDate = DateTime.Now, Artist = new Artist(), Categories = new List<Category>(), Content = "3", Price = 3, Type = "CD"}
-            };
-        }
+//        public AlbumIM()
+//        {
+//            albums = new List<Album>
+//            {
+//                new Album {Id = 1, Name = "Test", PublishDate = DateTime.Now, Artist = new Artist(), Categories = new List<Category>(), Content = "1", Price = 1, Type = "CD"},
+//                new Album {Id = 2, Name = "Test2", PublishDate = DateTime.Now, Artist = new Artist(), Categories = new List<Category>(), Content = "2", Price = 2, Type = "Vinyl"},
+//                new Album {Id = 3, Name = "Test3", PublishDate = DateTime.Now, Artist = new Artist(), Categories = new List<Category>(), Content = "3", Price = 3, Type = "CD"}
+//            };
+//        }
 
         public Album Insert(Album album)
         {
             albums.Add(album);
             return album;
+        }
+
+        public void Edit(Album album)
+        {
+            foreach (var a in albums)
+                if (a.Id == album.Id)
+                {
+                    a.Artist = album.Artist;
+//                    a.Categories = album.Categories;
+                    a.Content = album.Content;
+                    a.Name = album.Name;
+                    a.Price = album.Price;
+                    a.PublishDate = album.PublishDate;
+                    a.Type = album.Type;
+                }
         }
 
         public void Delete(int id)
@@ -53,7 +68,7 @@ namespace Shop.Infrastructure.Repositories
 
         public List<Album> FindByCategory(Category category)
         {
-            return (from a in albums from c in a.Categories where c.Id == category.Id select a).ToList();
+            return (from a in albums where a.Category.Id == category.Id select a).ToList();
         }
 
         public List<Album> FindByType(string type)

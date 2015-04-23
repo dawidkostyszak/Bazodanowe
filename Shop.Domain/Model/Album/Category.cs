@@ -6,11 +6,11 @@ namespace Shop.Domain.Model.Album
     {
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
-        public virtual ICollection<Album> Albums { get; set; }
+        public virtual IList<Album> Albums { get; set; }
 
         public Category()
         {
-            Albums = new HashSet<Album>();
+            Albums = new List<Album>();
         }
     }
 }

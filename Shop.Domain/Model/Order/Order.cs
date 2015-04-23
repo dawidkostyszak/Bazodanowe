@@ -9,13 +9,13 @@ namespace Shop.Domain.Model.Order
         public virtual DateTime CreatedAt { get; set; }
         public virtual User.User Customer { get; set; }
         public virtual string InvoiceNumber { get; set; }
-        public virtual ICollection<Album.Album> Products { get; set; }
+        public virtual IList<Album.Album> Products { get; set; }
         public virtual int Price { get; set; }
         public virtual OrderStatus Status { get; set; }
 
         public Order()
         {
-            Products = new HashSet<Album.Album>();
+            Products = new List<Album.Album>();
         }
     }
 }

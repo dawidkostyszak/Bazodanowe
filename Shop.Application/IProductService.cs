@@ -8,6 +8,7 @@ namespace Shop.Application
     {
         //Album
         Album CreateNewAlbum(Album album);
+        void EditAlbum(Album album);
         void DeleteAlbum(int id);
         Album GetAlbum(int id);
         List<Album> GetAllAlbumsForCategory(Category category);

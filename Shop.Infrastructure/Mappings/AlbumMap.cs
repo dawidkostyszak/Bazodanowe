@@ -7,10 +7,11 @@ namespace Shop.Infrastructure.Mappings
     {
         public AlbumMap()
         {
-            Id(x => x.Id).GeneratedBy.HiLo("");
-            References(x => x.Artist).Column("ArtistId").Cascade.All();
-            HasManyToMany(x => x.Orders).ParentKeyColumn("AlbumId").ChildKeyColumn("OrderId").Table("OrdersAlbum").Cascade.All();
-            HasManyToMany(x => x.Categories).ParentKeyColumn("AlbumId").ChildKeyColumn("CategoryId").Table("CategoriesAlbums").Cascade.All();
+            Id(x => x.Id).GeneratedBy.Increment();
+            References(x => x.Artist).Column("ArtistId").LazyLoad();
+            HasMany(x => x.Orders).LazyLoad();
+//            HasManyToMany(x => x.Orders).ParentKeyColumn("AlbumId").ChildKeyColumn("OrderId").Table("OrdersAlbum").Cascade.All();
+            References(x => x.Category).Column("CategoryId").LazyLoad();
             Map(x => x.Content);
             Map(x => x.Name);
             Map(x => x.Price);
