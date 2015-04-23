@@ -78,6 +78,7 @@ namespace Shop.Application.UnitTests
         {
             CreateArtisCategoryAlbum(1);
             CreateArtisCategoryAlbum(2);
+
             List<Album> albums = ps.GetAllAlbums();
 
             Assert.AreEqual(2, albums.Count);
@@ -135,6 +136,16 @@ namespace Shop.Application.UnitTests
             Assert.AreEqual(1, albums.Count);
         }
 
+        [TestMethod]
+        public void CheckGetAlbumsForTypeMethodResult()
+        {
+            CreateArtisCategoryAlbum(1);
+
+            List<Album> albums = ps.GetAllAlbumsForType("CD");
+
+            Assert.AreEqual(1, albums.Count);
+        }
+
         //Artist
         [TestMethod]
         public void CheckGetAllArtistsMethodResult()
@@ -144,6 +155,16 @@ namespace Shop.Application.UnitTests
             List<Artist> artists = ps.GetAllArtists();
 
             Assert.AreEqual(2, artists.Count);
+        }
+
+        [TestMethod]
+        public void CheckGetArtistMethodResult()
+        {
+            Artist artist = ProductObjectMother.CreateArtist(1);
+            ps.CreateNewArtist(artist);
+            Artist result = ps.GetArtist(artist.Id);
+
+            Assert.AreEqual(artist.Id, result.Id);
         }
 
         [TestMethod]

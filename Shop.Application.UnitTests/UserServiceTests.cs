@@ -119,6 +119,18 @@ namespace Shop.Application.UnitTests
         }
 
         [TestMethod]
+        public void CheckEditUserEmailAddressMethodResult()
+        {
+            CreateUser(1, "uzytkownik");
+
+            us.EditUserEmailAddress(1, "test@test.pl");
+
+            User result = us.GetUser(1);
+
+            Assert.AreEqual("test@test.pl", result.EmailAddress);
+        }
+
+        [TestMethod]
         public void CheckLoginUserMethodResult()
         {
             User user = UserObjectMother.CreateCleanCustomer(1, "uzytkownik");

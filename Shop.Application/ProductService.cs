@@ -72,6 +72,11 @@ namespace Shop.Application
             return _artistRepository.FindAll();
         }
 
+        public Artist GetArtist(int id)
+        {
+            return _artistRepository.Find(id);
+        }
+
         //Category
         public void CreateNewCategory(Category category)
         {

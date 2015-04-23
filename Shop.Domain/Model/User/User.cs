@@ -1,4 +1,6 @@
-﻿namespace Shop.Domain.Model.User
+﻿using System.Collections.Generic;
+
+namespace Shop.Domain.Model.User
 {
     public class User
     {

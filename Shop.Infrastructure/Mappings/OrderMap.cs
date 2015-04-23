@@ -9,9 +9,9 @@ namespace Shop.Infrastructure.Mappings
         {
             Id(x => x.Id).Not.Nullable().Column("OrderId").GeneratedBy.Assigned();
             Map(x => x.CreatedAt);
-            References(x => x.Customer).Column("UserId").Not.Nullable();
+            References(x => x.Customer).Column("UserId");
             Map(x => x.InvoiceNumber);
-            HasMany(x => x.Products).KeyColumn("AlbumId");
+            HasManyToMany(x => x.Products).ParentKeyColumn("OrderId").ChildKeyColumn("AlbumId").Table("OrdersAlbum");
             Map(x => x.Price);
             Map(x => x.Status).CustomType<OrderStatusType>();
             Table("[Order]");

@@ -19,6 +19,7 @@ namespace Shop.Application
         void CreateNewArtist(Artist artist);
         void DeleteArtist(int id);
         List<Artist> GetAllArtists();
+        Artist GetArtist(int id);
 
         //Category
         void CreateNewCategory(Category category);

@@ -11,11 +11,11 @@ namespace Shop.ObjectMothers
             return new User{Id = id, Role = UserRole.Customer, Validations = validations};
         }
 
-        public static User CreateCustomerWithAddress()
+        public static User CreateCustomerWithAddress(int id, string username)
         {
-            Validations validations = CreatValidations("");
+            Validations validations = CreatValidations(username);
             Address address = CreateAddress();
-            return new User{ Id = 100, Role = UserRole.Customer, Validations = validations, Address = address };
+            return new User{ Id = id, Role = UserRole.Customer, Validations = validations, Address = address };
         }
 
         public static Address CreateAddress()

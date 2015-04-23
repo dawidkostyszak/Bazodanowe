@@ -7,7 +7,7 @@ namespace Shop.Infrastructure.Mappings
     {
         public UserMap()
         {
-            Id(x => x.Id).Not.Nullable().Column("UserId").GeneratedBy.Assigned();
+            Id(x => x.Id).Column("UserId").GeneratedBy.Assigned();
             Component(x => x.Address);
             Component(x => x.Name);
             Map(x => x.EmailAddress);
