@@ -16,9 +16,9 @@ namespace Shop.Infrastructure.Repositories
         {
             orders = new List<Order>
             {
-                new Order{Id = 1, CreatedAt = DateTime.Now, Customer = new User{Address = new Address()}, Invoice = new Invoice(), Price = 10, Products = new List<Album>(), Status = Order.OrderStatus.Created },
-                new Order{Id = 2, CreatedAt = DateTime.Now, Customer = new User{Address = new Address()}, Invoice = new Invoice(), Price = 100, Products = new List<Album>(), Status = Order.OrderStatus.Paid },
-                new Order{Id = 3, CreatedAt = DateTime.Now, Customer = new User{Address = new Address()}, Invoice = new Invoice(), Price = 30, Products = new List<Album>(), Status = Order.OrderStatus.Finished }
+                new Order{Id = 1, CreatedAt = DateTime.Now, Customer = new User{Address = new Address()}, InvoiceNumber = "ABC/1/DEF", Price = 10, Products = new List<Album>(), Status = OrderStatus.Created },
+                new Order{Id = 2, CreatedAt = DateTime.Now, Customer = new User{Address = new Address()}, InvoiceNumber = "ABC/2/DEF", Price = 100, Products = new List<Album>(), Status = OrderStatus.Paid },
+                new Order{Id = 3, CreatedAt = DateTime.Now, Customer = new User{Address = new Address()}, InvoiceNumber = "ABC/3/DEF", Price = 30, Products = new List<Album>(), Status = OrderStatus.Finished }
             };
         }
 

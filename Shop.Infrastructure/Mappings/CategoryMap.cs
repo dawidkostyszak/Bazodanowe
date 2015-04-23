@@ -7,9 +7,9 @@ namespace Shop.Infrastructure.Mappings
     {
         public CategoryMap()
         {
-            Id(x => x.Id).Not.Nullable().Column("CategoryId").GeneratedBy.Assigned();
-            Map(x => x.Name);
-            HasMany(x => x.Albums).KeyColumn("AlbumId");
+            Id(x => x.Id).Not.Nullable().GeneratedBy.HiLo("");
+            Map(x => x.Name).Unique();
+            HasManyToMany(x => x.Albums).ParentKeyColumn("CategoryId").ChildKeyColumn("AlbumId").Table("CategoriesAlbums");
             Table("Category");
         }
     }

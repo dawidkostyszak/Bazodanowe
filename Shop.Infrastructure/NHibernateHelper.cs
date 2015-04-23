@@ -2,12 +2,14 @@
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
-using NHibernate.Tool.hbm2ddl;
+using Shop.Infrastructure.Mappings;
 
 namespace Shop.Infrastructure
 {
     public class NHibernateHelper
     {
+        private static string _connectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Dawid\documents\visual studio 2013\Projects\Shop\Shop.Infrastructure\ShopDatabase.mdf;Integrated Security=True";
+
         private static ISessionFactory _sessionFactory;
 
         private static ISessionFactory SessionFactory
@@ -24,20 +26,22 @@ namespace Shop.Infrastructure
         private static void InitializeSessionFactory()
         {
             _sessionFactory = Fluently.Configure()
-                .Database(
-                    MsSqlConfiguration.MsSql2008.ConnectionString(
-                        @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Dawid\documents\visual studio 2013\Projects\Shop\Shop.Infrastructure\ShopDatabase.mdf;Integrated Security=True"
-                    ).ShowSql()
-                )
-                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
-                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true))
-                .BuildSessionFactory();
-                
+                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(_connectionString))
+                .Mappings(m => m.FluentMappings
+                    .Add<AlbumMap>()
+                    .Add<ArtistMap>()
+                    .Add<CategoryMap>()
+                    .Add<UserMap>()
+                    .Add<AddressMap>()
+                    .Add<NameMap>()
+                    .Add<ValidationsMap>()
+                    .Add<OrderMap>()
+                ).BuildSessionFactory();                
         }
 
-        public static ISession OpenSession()
+        public static IStatelessSession OpenSession()
         {
-            return SessionFactory.OpenSession();
+            return SessionFactory.OpenStatelessSession();
         }
     }
 }

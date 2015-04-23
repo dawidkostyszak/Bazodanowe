@@ -13,9 +13,9 @@ namespace Shop.Infrastructure.Repositories
         {
             _users = new List<User>
             {
-                new User {Id = 1, Address = new Address(), Name = new Name(), EmailAddress = "bob@gmail.com", PhoneNumber = 123456789, Role = User.UserRole.Customer,Validations = new Validations()},
-                new User {Id = 2, Address = new Address(), Name = new Name(), EmailAddress = "bob2@gmail.com", PhoneNumber = 123456789, Role = User.UserRole.Customer, Validations = new Validations()},
-                new User {Id = 3, Address = new Address(), Name = new Name(), EmailAddress = "bob3@gmail.com", PhoneNumber = 123456789, Role = User.UserRole.Worker, Validations = new Validations()}
+                new User {Id = 1, Address = new Address(), Name = new Name(), EmailAddress = "bob@gmail.com", PhoneNumber = 123456789, Role = UserRole.Customer,Validations = new Validations()},
+                new User {Id = 2, Address = new Address(), Name = new Name(), EmailAddress = "bob2@gmail.com", PhoneNumber = 123456789, Role = UserRole.Customer, Validations = new Validations()},
+                new User {Id = 3, Address = new Address(), Name = new Name(), EmailAddress = "bob3@gmail.com", PhoneNumber = 123456789, Role = UserRole.Worker, Validations = new Validations()}
             };
         }
 

@@ -55,22 +55,22 @@ namespace Shop.Application.UnitTests
             ps.CreateNewAlbum(album);
         }
 
-        [TestCleanup]
-        public void CleanAfterTest()
-        {
-            foreach (var a in ps.GetAllAlbums())
-            {
-                ps.DeleteAlbum(a.Id);
-            }
-            foreach (var a in ps.GetAllArtists())
-            {
-                ps.DeleteArtist(a.Id);
-            }
-            foreach (var c in ps.GetAllCategory())
-            {
-                ps.DeleteCategory(c.Id);
-            }
-        }
+//        [TestCleanup]
+//        public void CleanAfterTest()
+//        {
+//            foreach (var a in ps.GetAllAlbums())
+//            {
+//                ps.DeleteAlbum(a.Id);
+//            }
+//            foreach (var a in ps.GetAllArtists())
+//            {
+//                ps.DeleteArtist(a.Id);
+//            }
+//            foreach (var c in ps.GetAllCategory())
+//            {
+//                ps.DeleteCategory(c.Id);
+//            }
+//        }
 
         //Album
         [TestMethod]
@@ -120,6 +120,7 @@ namespace Shop.Application.UnitTests
             Category category = ProductObjectMother.CreateCategory(1);
             CreateArtisCategoryAlbum(1);
 
+            List<Album> rec = ps.GetAllAlbums();
             List<Album> albums = ps.GetAllAlbumsForCategory(category);
 
             Assert.AreEqual(1, albums.Count);

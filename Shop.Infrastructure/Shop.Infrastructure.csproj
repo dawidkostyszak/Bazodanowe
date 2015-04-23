@@ -11,6 +11,7 @@
     <AssemblyName>Shop.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -56,6 +56,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,16 +64,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappings\AddressMap.cs" />
     <Compile Include="Mappings\AlbumMap.cs" />
     <Compile Include="Mappings\ArtistMap.cs" />
     <Compile Include="Mappings\CategoryMap.cs" />
+    <Compile Include="Mappings\NameMap.cs" />
+    <Compile Include="Mappings\OrderMap.cs" />
+    <Compile Include="Mappings\UserMap.cs" />
+    <Compile Include="Mappings\ValidationsMap.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ArtistIM.cs" />
     <Compile Include="Repositories\AlbumIM.cs" />
     <Compile Include="Repositories\CategoryIM.cs" />
+    <Compile Include="Repositories\NHibernateRepo\AlbumIM.cs" />
+    <Compile Include="Repositories\NHibernateRepo\ArtistIM.cs" />
+    <Compile Include="Repositories\NHibernateRepo\CategoryIM.cs" />
+    <Compile Include="Repositories\NHibernateRepo\OrderIM.cs" />
+    <Compile Include="Repositories\NHibernateRepo\UserIM.cs" />
     <Compile Include="Repositories\UserIM.cs" />
-    <Compile Include="Repositories\InvoiceIM.cs" />
     <Compile Include="Repositories\OrderIM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +92,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +111,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ShopDatabase.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ShopDatabase_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>ShopDatabase.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

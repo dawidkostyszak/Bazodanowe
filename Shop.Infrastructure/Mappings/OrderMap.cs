@@ -7,7 +7,7 @@ namespace Shop.Infrastructure.Mappings
     {
         public OrderMap()
         {
-            Id(x => x.Id).Not.Nullable().Column("OrderId").GeneratedBy.Assigned();
+            Id(x => x.Id).Not.Nullable().Column("OrderId").GeneratedBy.HiLo("");
             Map(x => x.CreatedAt);
             References(x => x.Customer).Column("UserId");
             Map(x => x.InvoiceNumber);

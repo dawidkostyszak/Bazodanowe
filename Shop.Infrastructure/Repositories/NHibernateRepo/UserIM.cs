@@ -15,7 +15,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.Save(user);
+                    session.Insert(user);
                     transaction.Commit();
                 }
             }
@@ -29,7 +29,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
                 {
                     var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
                     userQuery.Address = newAddress;
-                    session.SaveOrUpdate(userQuery);
+                    session.Update(userQuery);
                     transaction.Commit();
                 }
             }
@@ -43,7 +43,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
                 {
                     var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
                     userQuery.Name = newName;
-                    session.SaveOrUpdate(userQuery);
+                    session.Update(userQuery);
                     transaction.Commit();
                 }
             }
@@ -57,7 +57,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
                 {
                     var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
                     userQuery.EmailAddress = newEmailAddress;
-                    session.SaveOrUpdate(userQuery);
+                    session.Update(userQuery);
                     transaction.Commit();
                 }
             }
@@ -71,7 +71,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
                 {
                     var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
                     userQuery.Validations.Password = newPassword;
-                    session.SaveOrUpdate(userQuery);
+                    session.Update(userQuery);
                     transaction.Commit();
                 }
             }
@@ -85,7 +85,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
                 {
                     var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
                     userQuery.PhoneNumber = newPhoneNumber;
-                    session.SaveOrUpdate(userQuery);
+                    session.Update(userQuery);
                     transaction.Commit();
                 }
             }
@@ -112,7 +112,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
                 {
                     var userQuery = (from u in session.Query<User>() where u.Validations.Username == username && u.Validations.Password == password select u).Single();
                     userQuery.Validations.Logged = true;
-                    session.SaveOrUpdate(userQuery);
+                    session.Update(userQuery);
                     transaction.Commit();
                     return userQuery;
                 }
@@ -127,7 +127,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
                 {
                     var userQuery = (from u in session.Query<User>() where u.Id == id select u).Single();
                     userQuery.Validations.Logged = false;
-                    session.SaveOrUpdate(userQuery);
+                    session.Update(userQuery);
                     transaction.Commit();
                     return userQuery;
                 }

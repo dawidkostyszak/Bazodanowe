@@ -7,9 +7,8 @@ namespace Shop.Infrastructure.Mappings
     {
         public ArtistMap()
         {
-            Id(x => x.Id).Not.Nullable().Column("ArtistId").GeneratedBy.Assigned();
+            Id(x => x.Id).Not.Nullable().GeneratedBy.HiLo("");
             Map(x => x.Name);
-            HasMany(x => x.Albums).KeyColumn("AlbumId");
             Table("Artist");
         }
     }

@@ -14,7 +14,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    session.Save(category);
+                    session.Insert(category);
                     transaction.Commit();
                 }
             }
