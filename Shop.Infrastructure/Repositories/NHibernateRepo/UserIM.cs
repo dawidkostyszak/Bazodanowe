@@ -78,7 +78,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
             }
         }
 
-        public void EditPhoneNumber(int id, int newPhoneNumber)
+        public void EditPhoneNumber(int id, string newPhoneNumber)
         {
             using (var session = NHibernateHelper.OpenSession())
             {

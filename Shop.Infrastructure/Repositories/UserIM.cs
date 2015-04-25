@@ -9,16 +9,6 @@ namespace Shop.Infrastructure.Repositories
     {
         private List<User> _users = new List<User>();
 
-        public UserIM()
-        {
-            _users = new List<User>
-            {
-                new User {Id = 1, Address = new Address(), Name = new Name(), EmailAddress = "bob@gmail.com", PhoneNumber = 123456789, Role = UserRole.Customer,Validations = new Validations()},
-                new User {Id = 2, Address = new Address(), Name = new Name(), EmailAddress = "bob2@gmail.com", PhoneNumber = 123456789, Role = UserRole.Customer, Validations = new Validations()},
-                new User {Id = 3, Address = new Address(), Name = new Name(), EmailAddress = "bob3@gmail.com", PhoneNumber = 123456789, Role = UserRole.Worker, Validations = new Validations()}
-            };
-        }
-
         public User Insert(User user)
         {
             _users.Add(user);
@@ -49,7 +39,7 @@ namespace Shop.Infrastructure.Repositories
                 u.Validations.Password = newPassword;
         }
 
-        public void EditPhoneNumber(int id, int newPhoneNumber)
+        public void EditPhoneNumber(int id, string newPhoneNumber)
         {
             foreach (var u in _users.Where(u => u.Id == id))
                 u.PhoneNumber = newPhoneNumber;

@@ -14,7 +14,7 @@ namespace Shop.Domain.Model.User.Repositories
 
         void EditPassword(int id, string newPassword);
 
-        void EditPhoneNumber(int id, int newPhoneNumber);
+        void EditPhoneNumber(int id, string newPhoneNumber);
 
         void Delete(int id);
 

@@ -44,7 +44,7 @@ namespace Shop.Application
             _userRepository.EditPassword(id, newPassword);
         }
 
-        public void EditUserPhoneNumber(int id, int newPhoneNumber)
+        public void EditUserPhoneNumber(int id, string newPhoneNumber)
         {
             _userRepository.EditPhoneNumber(id, newPhoneNumber);
         }

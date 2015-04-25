@@ -10,7 +10,7 @@ namespace Shop.Application
         void EditUserName(int id, Name newName);
         void EditUserEmailAddress(int id, string newEmailAddress);
         void EditUserPassword(int id, string newPassword);
-        void EditUserPhoneNumber(int id, int newPhoneNumber);
+        void EditUserPhoneNumber(int id, string newPhoneNumber);
         void DeleteUser(int id);
         bool LoginUser(string username, string password);
         bool LogoutUser(User user);

@@ -12,8 +12,8 @@ namespace Application
     {
         static void Main()
         {
-            ClearDatabase();
-//            CreateData();
+//            ClearDatabase();
+            CreateData();
         }
 
         static private void ClearDatabase()
@@ -59,7 +59,7 @@ namespace Application
             var ar = productService.CreateNewArtist(new Artist { Name = "AC/DC" });
             var cat = productService.CreateNewCategory(new Category { Name = "Rock" });
             var album = productService.CreateNewAlbum(new Album { Name = "Inny Album", Artist = ar, Category = cat, PublishDate = DateTime.Now, Content = "Opis", Type = "CD", Price = 100 });
-            var user = userService.CreateUser(new User{Address = new Address{City = "Wrocław", Flat = "1", House = "1", Street = "Ostrowskiego", ZipCode = "59-220"}, EmailAddress = "test@test.pl", Name = new Name{FirstName = "Jan", LastName = "Kowalski"}, PhoneNumber = 12345678, Role = UserRole.Customer, Validations = new Validations{Username = "user" + DateTime.Now.TimeOfDay, Password = "user", Logged = false}});
+            var user = userService.CreateUser(new User{Address = new Address{City = "Wrocław", Flat = "1", House = "1", Street = "Ostrowskiego", ZipCode = "59-220"}, EmailAddress = "test@test.pl", Name = new Name{FirstName = "Jan", LastName = "Kowalski"}, PhoneNumber = "123456789", Role = UserRole.Customer, Validations = new Validations{Username = "user" + DateTime.Now.TimeOfDay, Password = "user"}});
             orderService.CreateNewOrder(new Order{CreatedAt = DateTime.Now, Customer = user, InvoiceNumber = "ABC", Price = 100, Products = new List<Album>{album}, Status = OrderStatus.Created});
         }
     }

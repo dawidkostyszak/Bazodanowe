@@ -111,7 +111,7 @@ namespace Shop.Application.UnitTests
         {
             var user = CreateUser("uzytkownik");
 
-            us.EditUserPhoneNumber(user.Id, 012345678);
+            us.EditUserPhoneNumber(user.Id, "012345678");
 
             User result = us.GetUser(user.Id);
 

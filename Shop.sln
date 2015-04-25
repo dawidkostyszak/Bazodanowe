@@ -72,4 +72,8 @@ Global
 		{0B5F1327-98E5-440D-AAB6-1E56F5F2C819} = {E5C3812F-9806-44FD-BE35-7BCFB4434E3E}
 		{EFD5218C-344B-4B60-946E-C630F242CA7F} = {0B5F1327-98E5-440D-AAB6-1E56F5F2C819}
 	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Validation.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Validation.Integration.AspNet.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Validation.Integration.WCF.6.0.1304.0\lib\NET45
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Security.5.0.505.0\lib\NET35;packages\EntLibContrib.Validation.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.WindowsAzure.Configuration.5.0.1118.2\lib\NET4;packages\EnterpriseLibrary.WindowsAzure.Configuration.5.0.1118.2\DesignTime
+	EndGlobalSection
 EndGlobal
