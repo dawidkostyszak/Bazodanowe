@@ -6,8 +6,12 @@ namespace Shop.Domain.Model.Album.Repositories
     {
         Category Insert(Category category);
 
+        void Edit(Category category);
+
         void Delete(int id);
 
         List<Category> FindAll();
+
+        Category Find(int id);
     }
 }

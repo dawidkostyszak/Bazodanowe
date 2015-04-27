@@ -8,6 +8,8 @@ namespace Shop.Infrastructure
 {
     public class NHibernateHelper
     {
+        private static ISession _session;
+
         private static string _connectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Dawid\documents\visual studio 2013\Projects\Shop\Shop.Infrastructure\ShopDatabase.mdf;Integrated Security=True";
 
         private static ISessionFactory _sessionFactory;
@@ -41,9 +43,15 @@ namespace Shop.Infrastructure
                 .BuildSessionFactory();                
         }
 
-        public static IStatelessSession OpenSession()
+        public static ISession OpenSession()
         {
-            return SessionFactory.OpenStatelessSession();
+            _session = SessionFactory.OpenSession();
+            return _session;
+        }
+
+        public static ISession GetSession()
+        {
+            return _session;
         }
     }
 }

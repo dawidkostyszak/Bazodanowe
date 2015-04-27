@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Shop.Domain.Model.Album;
 using Shop.Domain.Model.Artist;
 

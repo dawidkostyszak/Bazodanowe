@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using NHibernate;
 using NHibernate.Linq;
 using Shop.Domain.Model.Artist;
 using Shop.Domain.Model.Artist.Repositories;
@@ -8,46 +9,38 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 {
     public class ArtistIM : IArtistRepository
     {
+        private ISession _session;
+
+        public ArtistIM(ISession session)
+        {
+            _session = session;
+        }
+
         public Artist Insert(Artist artist)
         {
-            using (var session = NHibernateHelper.OpenSession())
-            {
-                using (var transaction = session.BeginTransaction())
-                {
-                    session.Insert(artist);
-                    transaction.Commit();
-                    return artist;
-                }
-            }
+            _session.Save(artist);
+            return artist;
+        }
+
+        public void Edit(Artist artist)
+        {
+            _session.Update(artist);
         }
 
         public void Delete(int id)
         {
-            using (var session = NHibernateHelper.OpenSession())
-            {
-                using (var transaction = session.BeginTransaction())
-                {
-                    var artistQuery = (from a in session.Query<Artist>() where a.Id == id select a).Single();
-                    session.Delete(artistQuery);
-                    transaction.Commit();
-                }
-            }
+            var artistQuery = _session.Get<Artist>(id);
+            _session.Delete(artistQuery);
         }
 
         public List<Artist> FindAll()
         {
-            using (var session = NHibernateHelper.OpenSession())
-            {
-                return session.Query<Artist>().ToList();
-            }
+            return _session.Query<Artist>().ToList();
         }
 
         public Artist Find(int id)
         {
-            using (var session = NHibernateHelper.OpenSession())
-            {
-                return session.Get<Artist>(id);
-            }
+            return _session.Get<Artist>(id);
         }
     }
 }

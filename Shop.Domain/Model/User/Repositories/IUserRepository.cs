@@ -6,15 +6,7 @@ namespace Shop.Domain.Model.User.Repositories
     {
         User Insert(User user);
 
-        void EditAddress(int id, Address newAddress);
-
-        void EditName(int id, Name newName);
-
-        void EditEmailAddress(int id, string newEmailAddress);
-
-        void EditPassword(int id, string newPassword);
-
-        void EditPhoneNumber(int id, string newPhoneNumber);
+        void Edit(User user);
 
         void Delete(int id);
 

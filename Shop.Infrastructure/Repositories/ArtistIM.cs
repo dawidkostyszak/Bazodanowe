@@ -9,16 +9,6 @@ namespace Shop.Infrastructure.Repositories
     {
         private List<Artist> artists = new List<Artist>();
 
-        public ArtistIM()
-        {
-            artists = new List<Artist>
-            {
-                new Artist{Id = 1, Name = "Artist"},
-                new Artist{Id = 2, Name = "Artist2"},
-                new Artist{Id = 3, Name = "Artist3"}
-            };
-        }
-
         public Artist Insert(Artist artist)
         {
             artists.Add(artist);

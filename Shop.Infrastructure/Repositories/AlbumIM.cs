@@ -11,16 +11,6 @@ namespace Shop.Infrastructure.Repositories
     {
         private List<Album> albums = new List<Album>();
 
-//        public AlbumIM()
-//        {
-//            albums = new List<Album>
-//            {
-//                new Album {Id = 1, Name = "Test", PublishDate = DateTime.Now, Artist = new Artist(), Categories = new List<Category>(), Content = "1", Price = 1, Type = "CD"},
-//                new Album {Id = 2, Name = "Test2", PublishDate = DateTime.Now, Artist = new Artist(), Categories = new List<Category>(), Content = "2", Price = 2, Type = "Vinyl"},
-//                new Album {Id = 3, Name = "Test3", PublishDate = DateTime.Now, Artist = new Artist(), Categories = new List<Category>(), Content = "3", Price = 3, Type = "CD"}
-//            };
-//        }
-
         public Album Insert(Album album)
         {
             albums.Add(album);

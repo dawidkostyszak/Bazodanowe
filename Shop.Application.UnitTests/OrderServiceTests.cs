@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NHibernate;
 using Shop.Domain.Model.Order;
 using Shop.Domain.Model.User;
+using Shop.Infrastructure;
 using Shop.ObjectMothers;
 
 namespace Shop.Application.UnitTests
@@ -9,20 +11,25 @@ namespace Shop.Application.UnitTests
     [TestClass]
     public class OrderServiceTests
     {
-        public IOrderService os = new OrderService();
-        public IUserService us = new UserService();
+        private ISession _session = NHibernateHelper.OpenSession();
+        private IOrderService os = new OrderService();
+        private IUserService us = new UserService();
 
         public Order CreateOrder(string username)
         {
+            var transaction = _session.BeginTransaction();
             Order order = OrderObjectMother.CreateOrder(username);
             User user = us.CreateUser(UserObjectMother.CreateCustomerWithAddress(username));
             order.Customer = user;
-            return os.CreateNewOrder(order);
+            order =  os.CreateOrder(order);
+            transaction.Commit();
+            return order;
         }
 
         [TestCleanup]
         public void CleanAfterTest()
         {
+            var transaction = _session.BeginTransaction();
             foreach (var o in os.GetAllOrders())
             {
                 os.DeleteOrder(o.Id);
@@ -31,6 +38,7 @@ namespace Shop.Application.UnitTests
             {
                 us.DeleteUser(u.Id);
             }
+            transaction.Commit();
         }
 
         [TestMethod]
@@ -57,7 +65,9 @@ namespace Shop.Application.UnitTests
         {
             var order = CreateOrder("username");
 
+            var transaction = _session.BeginTransaction();
             os.DeleteOrder(order.Id);
+            transaction.Commit();
             List<Order> result = os.GetAllOrders();
 
             Assert.AreEqual(0, result.Count);
@@ -75,7 +85,7 @@ namespace Shop.Application.UnitTests
         public void CheckGetOrderByCityMethodResult()
         {
             var order = CreateOrder("username");
-            List<Order> orders = os.GetAllOrdersByCity(order.Customer.Address.City);
+            List<Order> orders = os.GetOrdersByCity(order.Customer.Address.City);
             Assert.AreEqual(1, orders.Count);
         }
 
@@ -83,7 +93,7 @@ namespace Shop.Application.UnitTests
         public void CheckGetOrderByUserMethodResult()
         {
             var order = CreateOrder("username");
-            List<Order> orders = os.GetAllOrdersByUser(order.Customer.Id);
+            List<Order> orders = os.GetOrdersByUser(order.Customer.Id);
             Assert.AreEqual(1, orders.Count);
         }
     }

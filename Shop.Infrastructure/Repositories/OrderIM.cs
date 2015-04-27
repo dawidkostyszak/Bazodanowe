@@ -12,16 +12,6 @@ namespace Shop.Infrastructure.Repositories
     {
         private List<Order> orders = new List<Order>();
 
-        public OrderIM()
-        {
-            orders = new List<Order>
-            {
-                new Order{Id = 1, CreatedAt = DateTime.Now, Customer = new User{Address = new Address()}, InvoiceNumber = "ABC/1/DEF", Price = 10, Products = new List<Album>(), Status = OrderStatus.Created },
-                new Order{Id = 2, CreatedAt = DateTime.Now, Customer = new User{Address = new Address()}, InvoiceNumber = "ABC/2/DEF", Price = 100, Products = new List<Album>(), Status = OrderStatus.Paid },
-                new Order{Id = 3, CreatedAt = DateTime.Now, Customer = new User{Address = new Address()}, InvoiceNumber = "ABC/3/DEF", Price = 30, Products = new List<Album>(), Status = OrderStatus.Finished }
-            };
-        }
-
         public Order Insert(Order order)
         {
             orders.Add(order);

@@ -6,6 +6,8 @@ namespace Shop.Domain.Model.Artist.Repositories
     {
         Artist Insert(Artist artist);
 
+        void Edit(Artist artist);
+
         void Delete(int id);
 
         List<Artist> FindAll();

@@ -56,12 +56,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mappings\AddressMap.cs" />
@@ -74,16 +68,16 @@
     <Compile Include="Mappings\ValidationsMap.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\ArtistIM.cs" />
-    <Compile Include="Repositories\AlbumIM.cs" />
-    <Compile Include="Repositories\CategoryIM.cs" />
+    <None Include="Repositories\ArtistIM.cs" />
+    <None Include="Repositories\AlbumIM.cs" />
+    <None Include="Repositories\CategoryIM.cs" />
     <Compile Include="Repositories\NHibernateRepo\AlbumIM.cs" />
     <Compile Include="Repositories\NHibernateRepo\ArtistIM.cs" />
     <Compile Include="Repositories\NHibernateRepo\CategoryIM.cs" />
     <Compile Include="Repositories\NHibernateRepo\OrderIM.cs" />
     <Compile Include="Repositories\NHibernateRepo\UserIM.cs" />
-    <Compile Include="Repositories\UserIM.cs" />
-    <Compile Include="Repositories\OrderIM.cs" />
+    <None Include="Repositories\UserIM.cs" />
+    <None Include="Repositories\OrderIM.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shop.Domain\Shop.Domain.csproj">

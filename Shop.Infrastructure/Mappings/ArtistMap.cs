@@ -9,7 +9,7 @@ namespace Shop.Infrastructure.Mappings
         {
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Name);
-            HasMany(x => x.Albums).Cascade.All().Inverse().KeyColumn("ArtistId").LazyLoad();
+            HasMany(x => x.Albums).Cascade.SaveUpdate().Inverse().KeyColumn("ArtistId").LazyLoad();
             Table("Artist");
         }
     }

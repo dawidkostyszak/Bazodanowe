@@ -14,7 +14,6 @@ namespace Shop.Infrastructure.Mappings
             Map(x => x.PhoneNumber);
             Map(x => x.Role).CustomType<UserRoleType>();
             Component(x => x.Validations);
-            HasMany(x => x.Orders).Cascade.All().Inverse().KeyColumn("UserId").LazyLoad();
             Table("[User]");
         }
     }

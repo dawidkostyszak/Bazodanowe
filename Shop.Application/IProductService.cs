@@ -7,24 +7,27 @@ namespace Shop.Application
     public interface IProductService
     {
         //Album
-        Album CreateNewAlbum(Album album);
+        Album CreateAlbum(Album album);
         void EditAlbum(Album album);
         void DeleteAlbum(int id);
         Album GetAlbum(int id);
-        List<Album> GetAllAlbumsForCategory(Category category);
-        List<Album> GetAllAlbumsForArtist(Artist artist);
-        List<Album> GetAllAlbumsForType(string type);
+        List<Album> GetAlbumsForCategory(Category category);
+        List<Album> GetAlbumsForArtist(Artist artist);
+        List<Album> GetAlbumsForType(string type);
         List<Album> GetAllAlbums();
 
         //Artist
-        Artist CreateNewArtist(Artist artist);
+        Artist CreateArtist(Artist artist);
+        void EditArtist(Artist artist);
         void DeleteArtist(int id);
         List<Artist> GetAllArtists();
         Artist GetArtist(int id);
 
         //Category
-        Category CreateNewCategory(Category category);
+        Category CreateCategory(Category category);
+        void EditCategory(Category category);
         void DeleteCategory(int id);
+        Category GetCategory(int id);
         List<Category> GetAllCategory();
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NHibernate;
 using Shop.Domain.Model.User;
+using Shop.Infrastructure;
 using Shop.ObjectMothers;
 
 namespace Shop.Application.UnitTests
@@ -8,21 +10,27 @@ namespace Shop.Application.UnitTests
     [TestClass]
     public class UserServiceReturnTests
     {
-        public IUserService us = new UserService();
+        private ISession _session = NHibernateHelper.OpenSession();
+        private IUserService us = new UserService();
 
         public User CreateUser(string username)
         {
+            var transaction = _session.BeginTransaction();
             User user = UserObjectMother.CreateCleanCustomer(username);
-            return us.CreateUser(user);
+            user = us.CreateUser(user);
+            transaction.Commit();
+            return user;
         }
 
         [TestCleanup]
         public void CleanAfterTest()
         {
+            var transaction = _session.BeginTransaction();
             foreach (var u in us.GetAllUsers())
             {
                 us.DeleteUser(u.Id);
             }
+            transaction.Commit();
         }
 
         [TestMethod]
@@ -30,6 +38,7 @@ namespace Shop.Application.UnitTests
         {
             CreateUser("uzytkownik");
             CreateUser("uzytkownik2");
+
             List<User> users = us.GetAllUsers();
 
             Assert.AreEqual(2, users.Count);
@@ -39,6 +48,7 @@ namespace Shop.Application.UnitTests
         public void CheckCreateUserMethodResult()
         {
             CreateUser("uzytkownik");
+
             List<User> users = us.GetAllUsers();
 
             Assert.AreEqual(1, users.Count);
@@ -48,7 +58,10 @@ namespace Shop.Application.UnitTests
         public void CheckDeleteUserMethodResult()
         {
             var user = CreateUser("uzytkownik");
+            var transaction = _session.BeginTransaction();
             us.DeleteUser(user.Id);
+            transaction.Commit();
+
             List<User> result = us.GetAllUsers();
 
             Assert.AreEqual(0, result.Count);
@@ -58,6 +71,7 @@ namespace Shop.Application.UnitTests
         public void CheckFindUserMethodResult()
         {
             var user = CreateUser("uzytkownik");
+
             User result = us.GetUser(user.Id);
 
             Assert.AreEqual(user.Id, result.Id);
@@ -68,8 +82,10 @@ namespace Shop.Application.UnitTests
         {
             var user = CreateUser("uzytkownik");
 
-            Address address = UserObjectMother.CreateAddress();
-            us.EditUserAdress(user.Id, address);
+            user.Address = UserObjectMother.CreateAddress();
+            var transaction = _session.BeginTransaction();
+            us.EditUser(user);
+            transaction.Commit();
 
             User result = us.GetUser(user.Id);
 
@@ -85,8 +101,10 @@ namespace Shop.Application.UnitTests
         {
             var user = CreateUser("uzytkownik");
 
-            Name name = UserObjectMother.CreateName();
-            us.EditUserName(user.Id, name);
+            user.Name = UserObjectMother.CreateName();
+            var transaction = _session.BeginTransaction();
+            us.EditUser(user);
+            transaction.Commit();
 
             User result = us.GetUser(user.Id);
 
@@ -98,8 +116,10 @@ namespace Shop.Application.UnitTests
         public void CheckEditUserPasswordMethodResult()
         {
             var user = CreateUser("uzytkownik");
-
-            us.EditUserPassword(user.Id, "admin");
+            user.Validations.Password = "admin";
+            var transaction = _session.BeginTransaction();
+            us.EditUser(user);
+            transaction.Commit();
 
             User result = us.GetUser(user.Id);
 
@@ -110,20 +130,24 @@ namespace Shop.Application.UnitTests
         public void CheckEditUserPhoneNumberMethodResult()
         {
             var user = CreateUser("uzytkownik");
-
-            us.EditUserPhoneNumber(user.Id, "012345678");
+            user.PhoneNumber = "012345678";
+            var transaction = _session.BeginTransaction();
+            us.EditUser(user);
+            transaction.Commit();
 
             User result = us.GetUser(user.Id);
 
-            Assert.AreEqual(012345678, result.PhoneNumber);
+            Assert.AreEqual("012345678", result.PhoneNumber);
         }
 
         [TestMethod]
         public void CheckEditUserEmailAddressMethodResult()
         {
             var user = CreateUser("uzytkownik");
-
-            us.EditUserEmailAddress(user.Id, "test@test.pl");
+            user.EmailAddress = "test@test.pl";
+            var transaction = _session.BeginTransaction();
+            us.EditUser(user);
+            transaction.Commit();
 
             User result = us.GetUser(user.Id);
 

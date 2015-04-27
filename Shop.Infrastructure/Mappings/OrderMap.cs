@@ -9,9 +9,9 @@ namespace Shop.Infrastructure.Mappings
         {
             Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.CreatedAt);
-            References(x => x.Customer).Column("UserId").LazyLoad();
+            References(x => x.Customer).Column("UserId").Cascade.None();
             Map(x => x.InvoiceNumber);
-            HasMany(x => x.Products).LazyLoad();
+            HasManyToMany(x => x.Products).ParentKeyColumn("OrderId").ChildKeyColumn("AlbumId").Cascade.All().Table("OrdersAlbums").LazyLoad();
             Map(x => x.Price);
             Map(x => x.Status).CustomType<OrderStatusType>();
             Table("[Order]");

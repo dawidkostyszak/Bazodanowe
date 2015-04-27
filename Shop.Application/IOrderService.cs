@@ -6,11 +6,11 @@ namespace Shop.Application
     public interface IOrderService
     {
         //Order
-        Order CreateNewOrder(Order order);
+        Order CreateOrder(Order order);
         void DeleteOrder(int id);
-        Order GetOrder(int orderId);
+        Order GetOrder(int id);
         List<Order> GetAllOrders();
-        List<Order> GetAllOrdersByCity(string city);
-        List<Order> GetAllOrdersByUser(int customerId);
+        List<Order> GetOrdersByCity(string city);
+        List<Order> GetOrdersByUser(int customerId);
     }
 }

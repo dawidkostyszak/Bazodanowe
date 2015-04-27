@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using NHibernate;
 using Shop.Domain.Model.User;
 using Shop.Domain.Model.User.Repositories;
+using Shop.Infrastructure;
 using Shop.Infrastructure.Repositories.NHibernateRepo;
 
 namespace Shop.Application
@@ -9,11 +11,14 @@ namespace Shop.Application
     {
         private IUserRepository _userRepository;
 
+        private readonly ISession _session = NHibernateHelper.GetSession();
+
         //User Service
         public UserService()
         {
-            _userRepository = new UserIM();
+            _userRepository = new UserIM(_session);
         }
+
         public UserService(IUserRepository userRepository)
         {
             this._userRepository = userRepository;
@@ -24,29 +29,9 @@ namespace Shop.Application
             return _userRepository.Insert(user);
         }
 
-        public void EditUserAdress(int id, Address newAddress)
+        public void EditUser(User user)
         {
-            _userRepository.EditAddress(id, newAddress);
-        }
-
-        public void EditUserName(int id, Name newName)
-        {
-            _userRepository.EditName(id, newName);
-        }
-
-        public void EditUserEmailAddress(int id, string newEmailAddress)
-        {
-            _userRepository.EditEmailAddress(id, newEmailAddress);
-        }
-
-        public void EditUserPassword(int id, string newPassword)
-        {
-            _userRepository.EditPassword(id, newPassword);
-        }
-
-        public void EditUserPhoneNumber(int id, string newPhoneNumber)
-        {
-            _userRepository.EditPhoneNumber(id, newPhoneNumber);
+            _userRepository.Edit(user);
         }
 
         public void DeleteUser(int id)
@@ -56,12 +41,18 @@ namespace Shop.Application
 
         public bool LoginUser(string username, string password)
         {
-            return _userRepository.Login(username, password) != null;
+            var transaction = _session.BeginTransaction();
+            var user = _userRepository.Login(username, password);
+            transaction.Commit();
+            return user != null;
         }
 
         public bool LogoutUser(User user)
         {
-            return _userRepository.Logout(user.Id) != null;
+            var transaction = _session.BeginTransaction();
+            user = _userRepository.Logout(user.Id);
+            transaction.Commit();
+            return user != null;
         }
 
         public List<User> GetAllUsers()

@@ -9,16 +9,6 @@ namespace Shop.Infrastructure.Repositories
     {
         private List<Category> categories = new List<Category>();
 
-        public CategoryIM()
-        {
-            categories = new List<Category>
-            {
-                new Category {Id = 1, Name = "Rock"},
-                new Category {Id = 2, Name = "Soul"},
-                new Category {Id = 3, Name = "Jazz"}
-            };
-        }
-
         public Category Insert(Category category)
         {
             categories.Add(category);
