@@ -24,7 +24,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 
         public void Edit(Category category)
         {
-            _session.Update(category);
+            _session.Merge(category);
         }
 
         public void Delete(int id)

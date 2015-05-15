@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ObjectMothers", "ObjectMoth
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.ObjectMothers", "Shop.ObjectMothers\Shop.ObjectMothers.csproj", "{EFD5218C-344B-4B60-946E-C630F242CA7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{7F069A55-8FA8-47E9-8B65-5D641CD3E0DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{EFD5218C-344B-4B60-946E-C630F242CA7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFD5218C-344B-4B60-946E-C630F242CA7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFD5218C-344B-4B60-946E-C630F242CA7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F069A55-8FA8-47E9-8B65-5D641CD3E0DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F069A55-8FA8-47E9-8B65-5D641CD3E0DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F069A55-8FA8-47E9-8B65-5D641CD3E0DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F069A55-8FA8-47E9-8B65-5D641CD3E0DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,9 +77,10 @@ Global
 		{3C358A41-F140-47E6-9540-C95CBC5E2362} = {D05A4E8F-98DE-458A-BA80-33D6ACD2E1F4}
 		{0B5F1327-98E5-440D-AAB6-1E56F5F2C819} = {E5C3812F-9806-44FD-BE35-7BCFB4434E3E}
 		{EFD5218C-344B-4B60-946E-C630F242CA7F} = {0B5F1327-98E5-440D-AAB6-1E56F5F2C819}
+		{7F069A55-8FA8-47E9-8B65-5D641CD3E0DD} = {291F523F-A2CE-4D95-857F-7A7A77CF8C7C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Validation.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Validation.Integration.AspNet.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Validation.Integration.WCF.6.0.1304.0\lib\NET45
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.Security.5.0.505.0\lib\NET35;packages\EntLibContrib.Validation.5.0.505.0\lib\NET35;packages\EnterpriseLibrary.WindowsAzure.Configuration.5.0.1118.2\lib\NET4;packages\EnterpriseLibrary.WindowsAzure.Configuration.5.0.1118.2\DesignTime
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Validation.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Validation.Integration.AspNet.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Validation.Integration.WCF.6.0.1304.0\lib\NET45
 	EndGlobalSection
 EndGlobal

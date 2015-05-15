@@ -24,7 +24,7 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
 
         public void Edit(User user)
         {
-            _session.Update(user);
+            _session.Merge(user);
         }
 
         public void Delete(int id)
