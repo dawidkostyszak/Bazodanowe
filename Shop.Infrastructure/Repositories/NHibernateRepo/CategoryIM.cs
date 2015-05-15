@@ -33,14 +33,29 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
             _session.Delete(categoryQuery);
         }
 
-        public List<Category> FindAll()
+        public List<Category> FindAll(string sortOrder)
         {
-            return _session.Query<Category>().ToList();
+            var categories = _session.Query<Category>();
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    categories = categories.OrderByDescending(c => c.Name);
+                    break;
+                default:
+                    categories = categories.OrderBy(c => c.Name);
+                    break;
+            }
+            return categories.ToList();
         }
 
         public Category Find(int id)
         {
             return _session.Get<Category>(id);
+        }
+
+        public List<Category> Filter(string name)
+        {
+            return _session.Query<Category>().Where(c => c.Name.Contains(name)).ToList();
         }
     }
 }

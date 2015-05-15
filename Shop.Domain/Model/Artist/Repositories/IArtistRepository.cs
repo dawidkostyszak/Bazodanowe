@@ -10,8 +10,10 @@ namespace Shop.Domain.Model.Artist.Repositories
 
         void Delete(int id);
 
-        List<Artist> FindAll();
+        List<Artist> FindAll(string sortOrder);
 
         Artist Find(int id);
+
+        List<Artist> Filter(string name);
     }
 }

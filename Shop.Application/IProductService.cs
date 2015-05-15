@@ -11,16 +11,18 @@ namespace Shop.Application
         void EditAlbum(Album album);
         void DeleteAlbum(int id);
         Album GetAlbum(int id);
-        List<Album> GetAlbumsForCategory(Category category);
-        List<Album> GetAlbumsForArtist(Artist artist);
+        List<Album> GetAlbumsForName(string name);
+        List<Album> GetAlbumsForCategory(string category);
+        List<Album> GetAlbumsForArtist(string artist);
         List<Album> GetAlbumsForType(string type);
-        List<Album> GetAllAlbums();
+        List<Album> GetAllAlbums(string sortOrder = "name_asc");
 
         //Artist
         Artist CreateArtist(Artist artist);
         void EditArtist(Artist artist);
         void DeleteArtist(int id);
-        List<Artist> GetAllArtists();
+        List<Artist> GetAllArtists(string sortOrder = "name_asc");
+        List<Artist> GetArtistsForName(string artistName);
         Artist GetArtist(int id);
 
         //Category
@@ -28,6 +30,7 @@ namespace Shop.Application
         void EditCategory(Category category);
         void DeleteCategory(int id);
         Category GetCategory(int id);
-        List<Category> GetAllCategory();
+        List<Category> GetAllCategory(string sortOrder = "name_asc");
+        List<Category> GetCategoriesForName(string categoryName);
     }
 }

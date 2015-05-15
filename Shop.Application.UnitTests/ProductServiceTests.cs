@@ -24,7 +24,7 @@ namespace Shop.Application.UnitTests
 
             ps.GetAllAlbums();
 
-            albumMock.Verify(k => k.FindAll(), Times.Once());
+            albumMock.Verify(k => k.FindAll("name_asc"), Times.Once());
         }
 
         [TestMethod]
@@ -138,7 +138,7 @@ namespace Shop.Application.UnitTests
         {
             var album = CreateArtistCategoryAlbum();
 
-            List<Album> albums = ps.GetAlbumsForCategory(album.Category);
+            List<Album> albums = ps.GetAlbumsForCategory(album.Category.Name);
 
             Assert.AreEqual(1, albums.Count);
         }
@@ -148,7 +148,7 @@ namespace Shop.Application.UnitTests
         {
             var album = CreateArtistCategoryAlbum();
 
-            List<Album> albums = ps.GetAlbumsForArtist(album.Artist);
+            List<Album> albums = ps.GetAlbumsForArtist(album.Artist.Name);
 
             Assert.AreEqual(1, albums.Count);
         }

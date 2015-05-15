@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using NHibernate;
 using Shop.Application;
 using Shop.Domain.Model.Album;
@@ -17,29 +19,16 @@ namespace WebApplication.Controllers
         public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            var albums = productService.GetAllAlbums();
+            ViewBag.CategorySortParm = sortOrder == "category_asc" ? "category_desc" : "category_asc";
+            ViewBag.ArtistSortParm = sortOrder == "artist_asc" ? "artist_desc" : "artist_asc";
+            ViewBag.TypeSortParm = sortOrder == "type_asc" ? "type_desc" : "type_asc";
+            var albums = productService.GetAllAlbums(sortOrder);
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                albums = albums.Where(s => s.Name.Contains(searchString)).ToList();
+                albums = productService.GetAlbumsForName(searchString);
             }
-//            switch (sortOrder)
-//            {
-//                case "name_desc":
-//                    albums = albums.OrderByDescending(s => s.LastName);
-//                    break;
-//                case "Date":
-//                    albums = albums.OrderBy(s => s.EnrollmentDate);
-//                    break;
-//                case "date_desc":
-//                    albums = albums.OrderByDescending(s => s.EnrollmentDate);
-//                    break;
-//                default:
-//                    albums = albums.OrderBy(s => s.LastName);
-//                    break;
-//            }
-////            return View(students.ToList());
+
             return View(albums);
         }
 
@@ -57,6 +46,10 @@ namespace WebApplication.Controllers
         // GET: Albums/Create
         public ActionResult Create()
         {
+            var artists = productService.GetAllArtists();
+            var categories = productService.GetAllCategory();
+            ViewBag.CategoryId = new SelectList(categories, "Id", "Name");
+            ViewBag.ArtistId = new SelectList(artists, "Id", "Name");
             return View();
         }
 
@@ -65,16 +58,22 @@ namespace WebApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Content,Name,Price,PublishDate,Type")] Album album)
+        public ActionResult Create(Album album)
         {
             if (ModelState.IsValid)
             {
                 var transaction = session.BeginTransaction();
+                album.Artist = productService.GetArtist(album.ArtistId);
+                album.Category = productService.GetCategory(album.CategoryId);
                 productService.CreateAlbum(album);
                 transaction.Commit();
                 return RedirectToAction("Index");
             }
 
+            var artists = productService.GetAllArtists();
+            var categories = productService.GetAllCategory();
+            ViewBag.CategoryId = new SelectList(categories, "Id", "Name", album.CategoryId);
+            ViewBag.ArtistId = new SelectList(artists, "Id", "Name", album.ArtistId);
             return View(album);
         }
 
@@ -86,6 +85,11 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound();
             }
+
+            var artists = productService.GetAllArtists();
+            var categories = productService.GetAllCategory();
+            ViewBag.CategoryId = new SelectList(categories, "Id", "Name", album.Category != null ? album.Category.Id : 0);
+            ViewBag.ArtistId = new SelectList(artists, "Id", "Name", album.Artist != null ? album.Artist.Id : 0);
             return View(album);
         }
 
@@ -94,15 +98,22 @@ namespace WebApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Content,Name,Price,PublishDate,Type")] Album album)
+        public ActionResult Edit(Album album)
         {
             if (ModelState.IsValid)
             {
                 var transaction = session.BeginTransaction();
+                album.Artist = productService.GetArtist(album.ArtistId);
+                album.Category = productService.GetCategory(album.CategoryId);
                 productService.EditAlbum(album);
                 transaction.Commit();
                 return RedirectToAction("Index");
             }
+
+            var artists = productService.GetAllArtists();
+            var categories = productService.GetAllCategory();
+            ViewBag.CategoryId = new SelectList(categories, "Id", "Name", album.Category != null ? album.Category.Id : 0);
+            ViewBag.ArtistId = new SelectList(artists, "Id", "Name", album.Artist != null ? album.Artist.Id : 0);
             return View(album);
         }
 

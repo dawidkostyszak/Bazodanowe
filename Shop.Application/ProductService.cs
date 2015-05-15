@@ -53,24 +53,29 @@ namespace Shop.Application
             return _albumRepository.Find(id);
         }
 
-        public List<Album> GetAlbumsForCategory(Category category)
+        public List<Album> GetAlbumsForName(string name)
         {
-            return _albumRepository.FindByCategory(category);
+            return _albumRepository.Filter("name", name);
         }
 
-        public List<Album> GetAlbumsForArtist(Artist artist)
+        public List<Album> GetAlbumsForCategory(string category)
         {
-            return _albumRepository.FindByArtist(artist);
+            return _albumRepository.Filter("category", category);
+        }
+
+        public List<Album> GetAlbumsForArtist(string artist)
+        {
+            return _albumRepository.Filter("artist", artist);
         }
 
         public List<Album> GetAlbumsForType(string type)
         {
-            return _albumRepository.FindByType(type);
+            return _albumRepository.Filter("type", type);
         }
 
-        public List<Album> GetAllAlbums()
+        public List<Album> GetAllAlbums(string sortOrder)
         {
-            return _albumRepository.FindAll();
+            return _albumRepository.FindAll(sortOrder);
         }
 
         //Artist
@@ -89,9 +94,14 @@ namespace Shop.Application
             _artistRepository.Delete(id);
         }
 
-        public List<Artist> GetAllArtists()
+        public List<Artist> GetAllArtists(string sortOrder)
         {
-            return _artistRepository.FindAll();
+            return _artistRepository.FindAll(sortOrder);
+        }
+
+        public List<Artist> GetArtistsForName(string artistName)
+        {
+            return _artistRepository.Filter(artistName);
         }
 
         public Artist GetArtist(int id)
@@ -120,9 +130,14 @@ namespace Shop.Application
             return _categoryRepository.Find(id);
         }
 
-        public List<Category> GetAllCategory()
+        public List<Category> GetAllCategory(string sortOrder)
         {
-            return _categoryRepository.FindAll();
+            return _categoryRepository.FindAll(sortOrder);
+        }
+
+        public List<Category> GetCategoriesForName(string categoryName)
+        {
+            return _categoryRepository.Filter(categoryName);
         }
     }
 }

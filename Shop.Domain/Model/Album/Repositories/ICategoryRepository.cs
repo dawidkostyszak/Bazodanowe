@@ -10,8 +10,10 @@ namespace Shop.Domain.Model.Album.Repositories
 
         void Delete(int id);
 
-        List<Category> FindAll();
+        List<Category> FindAll(string sortOrder);
 
         Category Find(int id);
+
+        List<Category> Filter(string name);
     }
 }

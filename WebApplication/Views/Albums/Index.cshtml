@@ -19,7 +19,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @Html.ActionLink("Name", "Index", new {sortOrder = ViewBag.NameSortParm})
+        </th>
+        <th>
+            @Html.ActionLink("Artist", "Index", new {sortOrder = ViewBag.ArtistSortParm})
+        </th>
+        <th>
+            @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CategorySortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Content)
@@ -31,7 +37,7 @@
             @Html.DisplayNameFor(model => model.PublishDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.ActionLink("Type", "Index", new { sortOrder = ViewBag.TypeSortParm })
         </th>
         <th></th>
     </tr>
@@ -40,6 +46,12 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Artist.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Content)

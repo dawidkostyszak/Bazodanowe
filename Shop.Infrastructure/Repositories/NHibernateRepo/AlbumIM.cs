@@ -4,7 +4,6 @@ using NHibernate;
 using NHibernate.Linq;
 using Shop.Domain.Model.Album;
 using Shop.Domain.Model.Album.Repositories;
-using Shop.Domain.Model.Artist;
 
 namespace Shop.Infrastructure.Repositories.NHibernateRepo
 {
@@ -40,24 +39,58 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
             return _session.Get<Album>(id);
         }
 
-        public List<Album> FindAll()
+        public List<Album> FindAll(string sortOrder)
         {
-            return _session.Query<Album>().ToList();
+            var albums = _session.Query<Album>();
+            switch (sortOrder)
+            {
+                case "artist_desc":
+                    albums = albums.OrderByDescending(a => a.Artist.Name);
+                    break;
+                case "artist_asc":
+                    albums = albums.OrderBy(a => a.Artist.Name);
+                    break;
+                case "category_desc":
+                    albums = albums.OrderByDescending(a => a.Category.Name);
+                    break;
+                case "category_asc":
+                    albums = albums.OrderBy(a => a.Category.Name);
+                    break;
+                case "name_desc":
+                    albums = albums.OrderByDescending(a => a.Name);
+                    break;
+                case "type_desc":
+                    albums = albums.OrderByDescending(a => a.Type);
+                    break;
+                case "type_asc":
+                    albums = albums.OrderBy(a => a.Type);
+                    break;
+                default:
+                    albums = albums.OrderBy(a => a.Name);
+                    break;
+            }
+            return albums.ToList();
         }
 
-        public List<Album> FindByArtist(Artist artist)
+        public List<Album> Filter(string filterName, string filterValue)
         {
-            return (from a in _session.Query<Album>() where a.Artist == artist select a).ToList();
-        }
-
-        public List<Album> FindByCategory(Category category)
-        {
-            return (from a in _session.Query<Album>() where a.Category == category select a).ToList();
-        }
-
-        public List<Album> FindByType(string type)
-        {
-            return (from a in _session.Query<Album>() where a.Type == type select a).ToList();
+            var albums = _session.Query<Album>();
+            switch (filterName)
+            {
+                case "artist":
+                    albums = albums.Where(a => a.Artist.Name.Contains(filterValue));
+                    break;
+                case "category":
+                    albums = albums.Where(a => a.Category.Name.Contains(filterValue));
+                    break;
+                case "name":
+                    albums = albums.Where(a => a.Name.Contains(filterValue));
+                    break;
+                case "type":
+                    albums = albums.Where(a => a.Type.Contains(filterValue));
+                    break;
+            }
+            return albums.ToList();
         }
     }
 }

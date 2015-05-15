@@ -12,12 +12,9 @@ namespace Shop.Domain.Model.Album.Repositories
 
         Album Find(int id);
 
-        List<Album> FindAll();
+        List<Album> FindAll(string sortOrder);
 
-        List<Album> FindByArtist(Artist.Artist artist);
+        List<Album> Filter(string filterName, string filterValue);
 
-        List<Album> FindByCategory(Category category);
-
-        List<Album> FindByType(string type);
     }
 }
