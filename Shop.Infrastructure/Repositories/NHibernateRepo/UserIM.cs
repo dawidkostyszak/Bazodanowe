@@ -49,14 +49,35 @@ namespace Shop.Infrastructure.Repositories.NHibernateRepo
             return userQuery;
         }
 
-        public List<User> FindAll()
+        public List<User> FindAll(string sortOrder)
         {
-            return _session.Query<User>().ToList();
+            var users = _session.Query<User>();
+            switch (sortOrder)
+            {
+                case "lastname_desc":
+                    users = users.OrderByDescending(a => a.Name.LastName);
+                    break;
+                case "lastname_asc":
+                    users = users.OrderBy(a => a.Name.LastName);
+                    break;
+                case "firstname_desc":
+                    users = users.OrderByDescending(a => a.Name.FirstName);
+                    break;
+                default:
+                    users = users.OrderBy(a => a.Name.FirstName);
+                    break;
+            }
+            return users.ToList();
         }
 
         public User Find(int id)
         {
             return _session.Get<User>(id);
+        }
+
+        public List<User> Filter(string filterValue)
+        {
+            return _session.Query<User>().AsEnumerable().Where(a => string.Format("{0} {1}", a.Name.FirstName, a.Name.LastName).Contains(filterValue)).ToList();
         }
     }
 }

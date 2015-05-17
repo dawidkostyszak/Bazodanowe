@@ -14,8 +14,10 @@ namespace Shop.Domain.Model.User.Repositories
 
         User Logout(int id);
 
-        List<User> FindAll();
+        List<User> FindAll(string sortOrder);
 
         User Find(int id);
+
+        List<User> Filter(string filterValue);
     }
 }

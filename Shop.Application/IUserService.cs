@@ -10,7 +10,8 @@ namespace Shop.Application
         void DeleteUser(int id);
         bool LoginUser(string username, string password);
         bool LogoutUser(User user);
-        List<User> GetAllUsers();
+        List<User> GetAllUsers(string sortOrder = "name_asc");
         User GetUser(int id);
+        List<User> FilterUserByName(string filterValue);
     }
 }

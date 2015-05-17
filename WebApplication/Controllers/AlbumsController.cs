@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using NHibernate;
+using PagedList;
 using Shop.Application;
 using Shop.Domain.Model.Album;
 using Shop.Infrastructure;
@@ -16,20 +17,34 @@ namespace WebApplication.Controllers
         private static IProductService productService = new ProductService();
 
         // GET: Albums
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.CategorySortParm = sortOrder == "category_asc" ? "category_desc" : "category_asc";
             ViewBag.ArtistSortParm = sortOrder == "artist_asc" ? "artist_desc" : "artist_asc";
             ViewBag.TypeSortParm = sortOrder == "type_asc" ? "type_desc" : "type_asc";
             var albums = productService.GetAllAlbums(sortOrder);
 
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 albums = productService.GetAlbumsForName(searchString);
             }
 
-            return View(albums);
+            ViewBag.CurrentFilter = searchString;
+
+            int pageNumber = (page ?? 1);
+            const int pageSize = 10;
+            return View(albums.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Albums/Details/5

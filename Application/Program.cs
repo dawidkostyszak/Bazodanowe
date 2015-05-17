@@ -19,7 +19,7 @@ namespace Application
 
         static void Main()
         {
-            ClearDatabase();
+//            ClearDatabase();
             CreateData();
         }
 
@@ -59,7 +59,7 @@ namespace Application
         { 
             var transaction = session.BeginTransaction();
 
-            for (var i = 0; i <= 10; i++)
+            for (var i = 0; i <= 100; i++)
             {
                 productService.CreateAlbum(new Album { Name = "A" + i, Artist = new Artist { Name = "AC/DC" }, Category = new Category { Name = "Rock" }, PublishDate = DateTime.Now, Content = "Opis", Type = "CD", Price = 100 });
             }

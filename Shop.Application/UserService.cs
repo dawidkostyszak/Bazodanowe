@@ -55,14 +55,19 @@ namespace Shop.Application
             return user != null;
         }
 
-        public List<User> GetAllUsers()
+        public List<User> GetAllUsers(string sortOrder)
         {
-            return _userRepository.FindAll();
+            return _userRepository.FindAll(sortOrder);
         }
 
         public User GetUser(int id)
         {
             return _userRepository.Find(id);
+        }
+
+        public List<User> FilterUserByName(string filterValue)
+        {
+            return _userRepository.Filter(filterValue);
         }
     }
 }
